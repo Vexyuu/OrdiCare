@@ -16,18 +16,19 @@ namespace WindowsFormsAppOrdiCare
 {
     public partial class FormMain : Form
     {
-        private string strcon = "Server=.\\SQLEXPRESS;" +
+        private string strConnexion = "Server=.\\SQLEXPRESS;" +
             "Database=OrdiCare;Trusted_Connection=True";
 
         public FormMain()
         {
             InitializeComponent();
+            loadMateriel();
+            loadClient();
+
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            loadMateriel();
-            loadClient();
 
             bool res = false; 
 
@@ -61,13 +62,39 @@ namespace WindowsFormsAppOrdiCare
             while (res == false);
         }
 
-
-        private void loadMateriel()
+        // Fonction pour vérifier la connexion de l'utilisateur
+        private bool checkConnexion(string lelogin, string lepwd)
         {
-            SqlConnection cn = new SqlConnection(this.strcon);
+            SqlConnection cn = new SqlConnection(this.strConnexion);
             cn.Open();
 
-            string strsql = "select nom from Produit order by nom";
+            string strsql = "select count(*) as nb from Login where " +
+                "Nom = @lenom and Password = @lepwd";
+
+            SqlCommand sq = new SqlCommand(strsql, cn);
+            sq.Parameters.AddWithValue("lenom", lelogin);
+            sq.Parameters.AddWithValue("lepwd", lepwd);
+
+            SqlDataReader dr = sq.ExecuteReader();
+
+            dr.Read();
+            int nb = Convert.ToInt32(dr["nb"]);
+
+            if (nb > 0)
+                return true;
+            else
+                return false;
+        }
+
+        // ----------------------------------------------------------------------------
+        // Fonctions pour charger les Matériels et les Clients
+        // ----------------------------------------------------------------------------
+        private void loadMateriel()
+        {
+            SqlConnection cn = new SqlConnection(this.strConnexion);
+            cn.Open();
+
+            string strsql = "select nom from PRODUIT order by nom";
 
             SqlCommand sq = new SqlCommand(strsql, cn);
 
@@ -86,7 +113,7 @@ namespace WindowsFormsAppOrdiCare
 
         private void loadClient()
         {
-            SqlConnection cn = new SqlConnection(this.strcon);
+            SqlConnection cn = new SqlConnection(this.strConnexion);
             cn.Open();
 
             string strsql = "select nom from CLIENT order by nom";
@@ -105,32 +132,9 @@ namespace WindowsFormsAppOrdiCare
             drp.Close();
             cn.Close();
         }
-
-
-        // Fonction pour vérifier la connexion de l'utilisateur
-        private bool checkConnexion(string lelogin, string lepwd)
-        {
-            SqlConnection cn = new SqlConnection(this.strcon);
-            cn.Open();
-
-            string strsql = "select count(*) as nb from Login where " +
-                "Nom = @lenom and Password = @lepwd";           
-
-            SqlCommand sq = new SqlCommand(strsql, cn);
-            sq.Parameters.AddWithValue("lenom", lelogin);
-            sq.Parameters.AddWithValue("lepwd", lepwd);
-
-            SqlDataReader dr = sq.ExecuteReader();
-
-            dr.Read();
-            int nb = Convert.ToInt32(dr["nb"]);
-
-            if (nb > 0)
-                return true;
-            else
-                return false;
-        }
-
+        // ----------------------------------------------------------------------------
+        // Fonction pour valider la Création de l'intervention
+        // ----------------------------------------------------------------------------
         private void buttonCreerIntervention_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Êtes vous sûr de vouloir valider l'intervention ?",
@@ -168,7 +172,7 @@ namespace WindowsFormsAppOrdiCare
 
         private void AddIntervention(decimal resultatPrix, int idMatos)
         {
-            SqlConnection cn = new SqlConnection(this.strcon);
+            SqlConnection cn = new SqlConnection(this.strConnexion);
             cn.Open();
             string addinter = "insert into INTERVENTION values (@lobjet, @ladate, @lecommentaire, @leprix, @lid)";
             SqlCommand sq = new SqlCommand(addinter, cn);
@@ -186,7 +190,7 @@ namespace WindowsFormsAppOrdiCare
 
         private void MajDateInstall(int  idMatos, DateTime dateInstall)
         {
-            SqlConnection cn = new SqlConnection(this.strcon);
+            SqlConnection cn = new SqlConnection(this.strConnexion);
             cn.Open();
 
             string majSql = "update PRODUIT set Date_Installation = @ladate where ID_PROD = @idProduit";
@@ -201,31 +205,38 @@ namespace WindowsFormsAppOrdiCare
 
         private int getProduitID(string produit)
         {
-            {
-                SqlConnection cn = new SqlConnection(this.strcon);
-                cn.Open();
+            SqlConnection cn = new SqlConnection(this.strConnexion);
+            cn.Open();
 
-                string strsql = "select ID_PROD from PRODUIT where Nom = '" + produit + "'";
+            string strsql = "select ID_PROD from PRODUIT where Nom = '" + produit + "'";
+            SqlCommand sq = new SqlCommand(strsql, cn);
+            SqlDataReader drp = sq.ExecuteReader();
 
-                SqlCommand sq = new SqlCommand(strsql, cn);
+            drp.Read();
+            int id = Convert.ToInt32(drp["ID_PROD"]);
 
-                SqlDataReader drp = sq.ExecuteReader();
+            drp.Close();
+            cn.Close();
 
-                drp.Read();
+            if (sq != null)
+                sq.Dispose();
 
-                int id = Convert.ToInt32(drp["ID_PROD"]);
+            if (cn != null)
+                cn.Dispose();
 
-                drp.Close();
-                cn.Close();
-
-                return id;
-            }
+            return id;
         }
 
         private void marqueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormMarque frm = new FormMarque();
-            frm.ShowDialog();
+            FormMarque formMarque = new FormMarque();
+            formMarque.ShowDialog();
+        }
+
+        private void clienToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormClient formClient = new FormClient();
+            formClient.ShowDialog();
         }
     }
 }

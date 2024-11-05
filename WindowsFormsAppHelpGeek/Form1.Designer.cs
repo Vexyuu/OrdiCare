@@ -30,7 +30,14 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fzadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.marqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matérielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listeDesInterventionsToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.listeDesInterventionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBoxInterventions = new System.Windows.Forms.GroupBox();
+            this.labelHeureIntervention = new System.Windows.Forms.Label();
+            this.comboBoxClient = new System.Windows.Forms.ComboBox();
             this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
             this.textBoxPrix = new System.Windows.Forms.TextBox();
             this.labelMateriel = new System.Windows.Forms.Label();
@@ -41,15 +48,9 @@
             this.labelObjet = new System.Windows.Forms.Label();
             this.buttonCreerIntervention = new System.Windows.Forms.Button();
             this.comboBoxMateriel = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
             this.textBoxCommentaire = new System.Windows.Forms.TextBox();
             this.textBoxObjetIntervention = new System.Windows.Forms.TextBox();
-            this.clienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.matérielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBoxClient = new System.Windows.Forms.ComboBox();
-            this.marqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listeDesInterventionsToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
-            this.listeDesInterventionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.GroupBoxInterventions.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +62,7 @@
             this.fzadToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1069, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1069, 30);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,11 +77,44 @@
             this.fzadToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9F);
             this.fzadToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.fzadToolStripMenuItem.Name = "fzadToolStripMenuItem";
-            this.fzadToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.fzadToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
             this.fzadToolStripMenuItem.Text = "Gestion";
+            // 
+            // clienToolStripMenuItem
+            // 
+            this.clienToolStripMenuItem.Name = "clienToolStripMenuItem";
+            this.clienToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.clienToolStripMenuItem.Text = "Client...";
+            this.clienToolStripMenuItem.Click += new System.EventHandler(this.clienToolStripMenuItem_Click);
+            // 
+            // marqueToolStripMenuItem
+            // 
+            this.marqueToolStripMenuItem.Name = "marqueToolStripMenuItem";
+            this.marqueToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.marqueToolStripMenuItem.Text = "Marque...";
+            this.marqueToolStripMenuItem.Click += new System.EventHandler(this.marqueToolStripMenuItem_Click);
+            // 
+            // matérielToolStripMenuItem
+            // 
+            this.matérielToolStripMenuItem.Name = "matérielToolStripMenuItem";
+            this.matérielToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.matérielToolStripMenuItem.Text = "Matériel";
+            // 
+            // listeDesInterventionsToolStripMenuItem
+            // 
+            this.listeDesInterventionsToolStripMenuItem.Name = "listeDesInterventionsToolStripMenuItem";
+            this.listeDesInterventionsToolStripMenuItem.Size = new System.Drawing.Size(232, 6);
+            // 
+            // listeDesInterventionsToolStripMenuItem1
+            // 
+            this.listeDesInterventionsToolStripMenuItem1.Name = "listeDesInterventionsToolStripMenuItem1";
+            this.listeDesInterventionsToolStripMenuItem1.Size = new System.Drawing.Size(235, 26);
+            this.listeDesInterventionsToolStripMenuItem1.Text = "Liste des interventions";
             // 
             // GroupBoxInterventions
             // 
+            this.GroupBoxInterventions.Controls.Add(this.dateTimePicker1);
+            this.GroupBoxInterventions.Controls.Add(this.labelHeureIntervention);
             this.GroupBoxInterventions.Controls.Add(this.comboBoxClient);
             this.GroupBoxInterventions.Controls.Add(this.dateTimePickerDate);
             this.GroupBoxInterventions.Controls.Add(this.textBoxPrix);
@@ -92,7 +126,6 @@
             this.GroupBoxInterventions.Controls.Add(this.labelObjet);
             this.GroupBoxInterventions.Controls.Add(this.buttonCreerIntervention);
             this.GroupBoxInterventions.Controls.Add(this.comboBoxMateriel);
-            this.GroupBoxInterventions.Controls.Add(this.maskedTextBox3);
             this.GroupBoxInterventions.Controls.Add(this.textBoxCommentaire);
             this.GroupBoxInterventions.Controls.Add(this.textBoxObjetIntervention);
             this.GroupBoxInterventions.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold);
@@ -104,19 +137,41 @@
             this.GroupBoxInterventions.TabStop = false;
             this.GroupBoxInterventions.Text = "Interventions";
             // 
+            // labelHeureIntervention
+            // 
+            this.labelHeureIntervention.AutoSize = true;
+            this.labelHeureIntervention.Font = new System.Drawing.Font("Arial", 12F);
+            this.labelHeureIntervention.ForeColor = System.Drawing.Color.Black;
+            this.labelHeureIntervention.Location = new System.Drawing.Point(451, 96);
+            this.labelHeureIntervention.Name = "labelHeureIntervention";
+            this.labelHeureIntervention.Size = new System.Drawing.Size(194, 23);
+            this.labelHeureIntervention.TabIndex = 24;
+            this.labelHeureIntervention.Text = "Heure d\'intervention :";
+            // 
+            // comboBoxClient
+            // 
+            this.comboBoxClient.Font = new System.Drawing.Font("Arial", 11F);
+            this.comboBoxClient.FormattingEnabled = true;
+            this.comboBoxClient.Location = new System.Drawing.Point(96, 322);
+            this.comboBoxClient.Name = "comboBoxClient";
+            this.comboBoxClient.Size = new System.Drawing.Size(214, 29);
+            this.comboBoxClient.TabIndex = 23;
+            // 
             // dateTimePickerDate
             // 
+            this.dateTimePickerDate.CustomFormat = "dd / MMMM / yyyy";
             this.dateTimePickerDate.Font = new System.Drawing.Font("Arial", 11F);
+            this.dateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerDate.Location = new System.Drawing.Point(199, 92);
             this.dateTimePickerDate.Name = "dateTimePickerDate";
-            this.dateTimePickerDate.Size = new System.Drawing.Size(329, 29);
+            this.dateTimePickerDate.Size = new System.Drawing.Size(223, 29);
             this.dateTimePickerDate.TabIndex = 22;
             // 
             // textBoxPrix
             // 
             this.textBoxPrix.Font = new System.Drawing.Font("Arial", 11F);
             this.textBoxPrix.ForeColor = System.Drawing.Color.Black;
-            this.textBoxPrix.Location = new System.Drawing.Point(67, 285);
+            this.textBoxPrix.Location = new System.Drawing.Point(511, 275);
             this.textBoxPrix.Name = "textBoxPrix";
             this.textBoxPrix.Size = new System.Drawing.Size(134, 29);
             this.textBoxPrix.TabIndex = 21;
@@ -126,7 +181,7 @@
             this.labelMateriel.AutoSize = true;
             this.labelMateriel.Font = new System.Drawing.Font("Arial", 11F);
             this.labelMateriel.ForeColor = System.Drawing.Color.Black;
-            this.labelMateriel.Location = new System.Drawing.Point(239, 285);
+            this.labelMateriel.Location = new System.Drawing.Point(4, 277);
             this.labelMateriel.Name = "labelMateriel";
             this.labelMateriel.Size = new System.Drawing.Size(86, 22);
             this.labelMateriel.TabIndex = 20;
@@ -137,7 +192,7 @@
             this.labelPrix.AutoSize = true;
             this.labelPrix.Font = new System.Drawing.Font("Arial", 11F);
             this.labelPrix.ForeColor = System.Drawing.Color.Black;
-            this.labelPrix.Location = new System.Drawing.Point(9, 285);
+            this.labelPrix.Location = new System.Drawing.Point(453, 277);
             this.labelPrix.Name = "labelPrix";
             this.labelPrix.Size = new System.Drawing.Size(52, 22);
             this.labelPrix.TabIndex = 19;
@@ -159,7 +214,7 @@
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Arial", 12F);
             this.labelClient.ForeColor = System.Drawing.Color.Black;
-            this.labelClient.Location = new System.Drawing.Point(566, 92);
+            this.labelClient.Location = new System.Drawing.Point(4, 323);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(71, 23);
             this.labelClient.TabIndex = 17;
@@ -202,19 +257,10 @@
             // 
             this.comboBoxMateriel.Font = new System.Drawing.Font("Arial", 11F);
             this.comboBoxMateriel.FormattingEnabled = true;
-            this.comboBoxMateriel.Location = new System.Drawing.Point(331, 282);
+            this.comboBoxMateriel.Location = new System.Drawing.Point(96, 274);
             this.comboBoxMateriel.Name = "comboBoxMateriel";
             this.comboBoxMateriel.Size = new System.Drawing.Size(326, 29);
             this.comboBoxMateriel.TabIndex = 14;
-            // 
-            // maskedTextBox3
-            // 
-            this.maskedTextBox3.Font = new System.Drawing.Font("Arial", 11F);
-            this.maskedTextBox3.Location = new System.Drawing.Point(58, 331);
-            this.maskedTextBox3.Mask = "0000.00€";
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(97, 29);
-            this.maskedTextBox3.TabIndex = 11;
             // 
             // textBoxCommentaire
             // 
@@ -235,44 +281,15 @@
             this.textBoxObjetIntervention.Size = new System.Drawing.Size(842, 29);
             this.textBoxObjetIntervention.TabIndex = 5;
             // 
-            // clienToolStripMenuItem
+            // dateTimePicker1
             // 
-            this.clienToolStripMenuItem.Name = "clienToolStripMenuItem";
-            this.clienToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.clienToolStripMenuItem.Text = "Client";
-            // 
-            // matérielToolStripMenuItem
-            // 
-            this.matérielToolStripMenuItem.Name = "matérielToolStripMenuItem";
-            this.matérielToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.matérielToolStripMenuItem.Text = "Matériel";
-            // 
-            // comboBoxClient
-            // 
-            this.comboBoxClient.Font = new System.Drawing.Font("Arial", 11F);
-            this.comboBoxClient.FormattingEnabled = true;
-            this.comboBoxClient.Location = new System.Drawing.Point(643, 91);
-            this.comboBoxClient.Name = "comboBoxClient";
-            this.comboBoxClient.Size = new System.Drawing.Size(214, 29);
-            this.comboBoxClient.TabIndex = 23;
-            // 
-            // marqueToolStripMenuItem
-            // 
-            this.marqueToolStripMenuItem.Name = "marqueToolStripMenuItem";
-            this.marqueToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
-            this.marqueToolStripMenuItem.Text = "Marque";
-            this.marqueToolStripMenuItem.Click += new System.EventHandler(this.marqueToolStripMenuItem_Click);
-            // 
-            // listeDesInterventionsToolStripMenuItem
-            // 
-            this.listeDesInterventionsToolStripMenuItem.Name = "listeDesInterventionsToolStripMenuItem";
-            this.listeDesInterventionsToolStripMenuItem.Size = new System.Drawing.Size(232, 6);
-            // 
-            // listeDesInterventionsToolStripMenuItem1
-            // 
-            this.listeDesInterventionsToolStripMenuItem1.Name = "listeDesInterventionsToolStripMenuItem1";
-            this.listeDesInterventionsToolStripMenuItem1.Size = new System.Drawing.Size(235, 26);
-            this.listeDesInterventionsToolStripMenuItem1.Text = "Liste des interventions";
+            this.dateTimePicker1.CustomFormat = "HH : mm : ss";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 11F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(651, 94);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(136, 29);
+            this.dateTimePicker1.TabIndex = 25;
             // 
             // FormMain
             // 
@@ -305,7 +322,6 @@
         private System.Windows.Forms.GroupBox GroupBoxInterventions;
         private System.Windows.Forms.TextBox textBoxObjetIntervention;
         private System.Windows.Forms.TextBox textBoxCommentaire;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox3;
         private System.Windows.Forms.ComboBox comboBoxMateriel;
         private System.Windows.Forms.Button buttonCreerIntervention;
         private System.Windows.Forms.Label labelObjet;
@@ -322,6 +338,8 @@
         private System.Windows.Forms.ToolStripMenuItem marqueToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator listeDesInterventionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listeDesInterventionsToolStripMenuItem1;
+        private System.Windows.Forms.Label labelHeureIntervention;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 
