@@ -23,36 +23,35 @@ namespace WindowsFormsAppOrdiCare
         private void loadClient()
         {
 
-           
-
             SqlConnection cn = new SqlConnection(this.strConnexion);
             cn.Open();
 
-            string strsql = "select nom from CLIENT order by nom";
-
+            string strsql = "select ID_CLIENT, Nom from CLIENT order by nom";
             SqlCommand sq = new SqlCommand(strsql, cn);
-
             SqlDataReader drp = sq.ExecuteReader();
 
             listBoxClient.Items.Clear();
-
+            ClassItem it;
             while (drp.Read() == true)
             {
-                string pro = drp["nom"].ToString();
-                listBoxClient.Items.Add(pro);
+                int id = Convert.ToInt32(drp["ID_CLIENT"]);
+                string nom = drp["nom"].ToString();
+                it = new ClassItem(id, nom);
+                listBoxClient.Items.Add(it);
             }
-
             drp.Close();
             cn.Close();
         }
 
         private void listBoxClient_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClassItem it = (ClassItem)listBoxClient.SelectedItem;
+            int idReference = it.getId();
 
-            string leNom = listBoxClient.SelectedItem.ToString();
+            // string leNom = listBoxClient.SelectedItem.ToString();
             SqlConnection connection = new SqlConnection(this.strConnexion);
             connection.Open();
-            string strSql = "select * from CLIENT where Nom = '" + leNom + "'";
+            string strSql = "select * from CLIENT where ID_CLIENT = " + idReference;
             SqlCommand sq = new SqlCommand(strSql, connection);
             SqlDataReader drp = sq.ExecuteReader();
             drp.Read();
