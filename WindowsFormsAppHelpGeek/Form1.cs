@@ -27,6 +27,7 @@ namespace WindowsFormsAppOrdiCare
         private void FormMain_Load(object sender, EventArgs e)
         {
             loadMateriel();
+            loadClient();
 
             bool res = false; 
 
@@ -78,6 +79,28 @@ namespace WindowsFormsAppOrdiCare
             {
                 string pro = drp["nom"].ToString();
                 comboBoxMateriel.Items.Add(pro);
+            }
+            drp.Close();
+            cn.Close();
+        }
+
+        private void loadClient()
+        {
+            SqlConnection cn = new SqlConnection(this.strcon);
+            cn.Open();
+
+            string strsql = "select nom from CLIENT order by nom";
+
+            SqlCommand sq = new SqlCommand(strsql, cn);
+
+            SqlDataReader drp = sq.ExecuteReader();
+
+            comboBoxClient.Items.Clear();
+
+            while (drp.Read() == true)
+            {
+                string pro = drp["nom"].ToString();
+                comboBoxClient.Items.Add(pro);
             }
             drp.Close();
             cn.Close();
@@ -147,7 +170,7 @@ namespace WindowsFormsAppOrdiCare
         {
             SqlConnection cn = new SqlConnection(this.strcon);
             cn.Open();
-            string addinter = "insert into INTERVENTION values (@lobjet, @ladate, @lecommentaire, @leprix, @lid";
+            string addinter = "insert into INTERVENTION values (@lobjet, @ladate, @lecommentaire, @leprix, @lid)";
             SqlCommand sq = new SqlCommand(addinter, cn);
             sq.Parameters.AddWithValue("lobjet", textBoxObjetIntervention.Text);
             sq.Parameters.AddWithValue("ladate", dateTimePickerDate.Value);
@@ -165,10 +188,13 @@ namespace WindowsFormsAppOrdiCare
         {
             SqlConnection cn = new SqlConnection(this.strcon);
             cn.Open();
-            string majSql = "update PRODUIT set Date_Installation = @ladate where ID_PROD = @idpr";
+
+            string majSql = "update PRODUIT set Date_Installation = @ladate where ID_PROD = @idProduit";
             SqlCommand sq = new SqlCommand(majSql, cn);
             sq.Parameters.AddWithValue("ladate", dateInstall);
-            sq.Parameters.AddWithValue(majSql, dateTimePickerDate.Value);
+            sq.Parameters.AddWithValue("idProduit", idMatos);
+
+            sq.ExecuteNonQuery();
 
             cn.Close();
         }
@@ -196,5 +222,10 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
+        private void marqueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormMarque frm = new FormMarque();
+            frm.ShowDialog();
+        }
     }
 }
