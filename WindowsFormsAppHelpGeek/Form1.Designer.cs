@@ -36,7 +36,7 @@
             this.listeDesInterventionsToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.listeDesInterventionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBoxInterventions = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerHeure = new System.Windows.Forms.DateTimePicker();
             this.labelHeureIntervention = new System.Windows.Forms.Label();
             this.comboBoxClient = new System.Windows.Forms.ComboBox();
             this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
@@ -51,6 +51,8 @@
             this.comboBoxMateriel = new System.Windows.Forms.ComboBox();
             this.textBoxCommentaire = new System.Windows.Forms.TextBox();
             this.textBoxObjetIntervention = new System.Windows.Forms.TextBox();
+            this.labelMarque = new System.Windows.Forms.Label();
+            this.comboBoxMarque = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.GroupBoxInterventions.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +64,7 @@
             this.fzadToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1069, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1069, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,43 +79,50 @@
             this.fzadToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9F);
             this.fzadToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.fzadToolStripMenuItem.Name = "fzadToolStripMenuItem";
-            this.fzadToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.fzadToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
             this.fzadToolStripMenuItem.Text = "Gestion";
             // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.clientToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
             this.clientToolStripMenuItem.Text = "Client...";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
             // marqueToolStripMenuItem
             // 
             this.marqueToolStripMenuItem.Name = "marqueToolStripMenuItem";
-            this.marqueToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.marqueToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.M)));
+            this.marqueToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
             this.marqueToolStripMenuItem.Text = "Marque...";
             this.marqueToolStripMenuItem.Click += new System.EventHandler(this.marqueToolStripMenuItem_Click);
             // 
             // matérielToolStripMenuItem
             // 
             this.matérielToolStripMenuItem.Name = "matérielToolStripMenuItem";
-            this.matérielToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.matérielToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.N)));
+            this.matérielToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
             this.matérielToolStripMenuItem.Text = "Matériel";
             // 
             // listeDesInterventionsToolStripMenuItem
             // 
             this.listeDesInterventionsToolStripMenuItem.Name = "listeDesInterventionsToolStripMenuItem";
-            this.listeDesInterventionsToolStripMenuItem.Size = new System.Drawing.Size(232, 6);
+            this.listeDesInterventionsToolStripMenuItem.Size = new System.Drawing.Size(273, 6);
             // 
             // listeDesInterventionsToolStripMenuItem1
             // 
             this.listeDesInterventionsToolStripMenuItem1.Name = "listeDesInterventionsToolStripMenuItem1";
-            this.listeDesInterventionsToolStripMenuItem1.Size = new System.Drawing.Size(235, 26);
+            this.listeDesInterventionsToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
+            this.listeDesInterventionsToolStripMenuItem1.Size = new System.Drawing.Size(276, 26);
             this.listeDesInterventionsToolStripMenuItem1.Text = "Liste des interventions";
+            this.listeDesInterventionsToolStripMenuItem1.Click += new System.EventHandler(this.listeDesInterventionsToolStripMenuItem1_Click);
             // 
             // GroupBoxInterventions
             // 
-            this.GroupBoxInterventions.Controls.Add(this.dateTimePicker1);
+            this.GroupBoxInterventions.Controls.Add(this.comboBoxMarque);
+            this.GroupBoxInterventions.Controls.Add(this.labelMarque);
+            this.GroupBoxInterventions.Controls.Add(this.dateTimePickerHeure);
             this.GroupBoxInterventions.Controls.Add(this.labelHeureIntervention);
             this.GroupBoxInterventions.Controls.Add(this.comboBoxClient);
             this.GroupBoxInterventions.Controls.Add(this.dateTimePickerDate);
@@ -137,15 +146,15 @@
             this.GroupBoxInterventions.TabStop = false;
             this.GroupBoxInterventions.Text = "Interventions";
             // 
-            // dateTimePicker1
+            // dateTimePickerHeure
             // 
-            this.dateTimePicker1.CustomFormat = "HH : mm : ss";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 11F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(691, 94);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(136, 29);
-            this.dateTimePicker1.TabIndex = 25;
+            this.dateTimePickerHeure.CustomFormat = "HH : mm : ss";
+            this.dateTimePickerHeure.Font = new System.Drawing.Font("Arial", 11F);
+            this.dateTimePickerHeure.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerHeure.Location = new System.Drawing.Point(691, 94);
+            this.dateTimePickerHeure.Name = "dateTimePickerHeure";
+            this.dateTimePickerHeure.Size = new System.Drawing.Size(136, 29);
+            this.dateTimePickerHeure.TabIndex = 25;
             // 
             // labelHeureIntervention
             // 
@@ -291,6 +300,26 @@
             this.textBoxObjetIntervention.Size = new System.Drawing.Size(842, 29);
             this.textBoxObjetIntervention.TabIndex = 5;
             // 
+            // labelMarque
+            // 
+            this.labelMarque.AutoSize = true;
+            this.labelMarque.Font = new System.Drawing.Font("Arial", 12F);
+            this.labelMarque.ForeColor = System.Drawing.Color.Black;
+            this.labelMarque.Location = new System.Drawing.Point(351, 324);
+            this.labelMarque.Name = "labelMarque";
+            this.labelMarque.Size = new System.Drawing.Size(89, 23);
+            this.labelMarque.TabIndex = 26;
+            this.labelMarque.Text = "Marque :";
+            // 
+            // comboBoxMarque
+            // 
+            this.comboBoxMarque.Font = new System.Drawing.Font("Arial", 11F);
+            this.comboBoxMarque.FormattingEnabled = true;
+            this.comboBoxMarque.Location = new System.Drawing.Point(443, 323);
+            this.comboBoxMarque.Name = "comboBoxMarque";
+            this.comboBoxMarque.Size = new System.Drawing.Size(214, 29);
+            this.comboBoxMarque.TabIndex = 27;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -339,7 +368,9 @@
         private System.Windows.Forms.ToolStripSeparator listeDesInterventionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listeDesInterventionsToolStripMenuItem1;
         private System.Windows.Forms.Label labelHeureIntervention;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerHeure;
+        private System.Windows.Forms.ComboBox comboBoxMarque;
+        private System.Windows.Forms.Label labelMarque;
     }
 }
 

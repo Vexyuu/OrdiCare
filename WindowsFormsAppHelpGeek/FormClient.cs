@@ -25,9 +25,9 @@ namespace WindowsFormsAppOrdiCare
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
                 connectionBaseSQL.Open();
-                string strsql = "select ID_CLIENT, Nom from CLIENT order by nom";
-                using (SqlCommand sq = new SqlCommand(strsql, connectionBaseSQL))
-                using (SqlDataReader drp = sq.ExecuteReader())
+                string sqlQuery = "select ID_CLIENT, Nom from CLIENT order by nom";
+                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
+                using (SqlDataReader drp = sqlCommand.ExecuteReader())
                 {
                     listBoxClient.Items.Clear();
                     while (drp.Read())
@@ -39,6 +39,10 @@ namespace WindowsFormsAppOrdiCare
                     }
                 }
             }
+        }
+        private void clearFields()
+        {
+            textBoxNomClient.Text = textBoxMailClient.Text = textBoxTelClient.Text = textBoxAdresseClient.Text = string.Empty;
         }
 
         // ----------------------------------------------------------------------------
@@ -52,11 +56,11 @@ namespace WindowsFormsAppOrdiCare
             // string leNom = listBoxClient.SelectedItem.ToString();
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
-            string strSql = "select * from CLIENT where ID_CLIENT = @id";
-            using (SqlCommand sq = new SqlCommand(strSql, connectionBaseSQL))
+            string sqlQuery = "select * from CLIENT where ID_CLIENT = @id";
+            using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
             {
-                sq.Parameters.AddWithValue("@id", idReferenceClient);
-                using (SqlDataReader drp = sq.ExecuteReader())
+                sqlCommand.Parameters.AddWithValue("@id", idReferenceClient);
+                using (SqlDataReader drp = sqlCommand.ExecuteReader())
                 {
                     if (drp.Read())
                     {
@@ -67,7 +71,6 @@ namespace WindowsFormsAppOrdiCare
                     }
                 }
             }
-
         }
 
         // ----------------------------------------------------------------------------
@@ -95,27 +98,25 @@ namespace WindowsFormsAppOrdiCare
 
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
-            string addinter = "insert into CLIENT values (@client, @mail, @telephone, @adresse)";
-            SqlCommand sq = new SqlCommand(addinter, connectionBaseSQL);
-            sq.Parameters.AddWithValue("client", textBoxNomClient.Text);
-            sq.Parameters.AddWithValue("mail", textBoxMailClient.Text);
-            sq.Parameters.AddWithValue("telephone", textBoxTelClient.Text);
-            sq.Parameters.AddWithValue("adresse", textBoxAdresseClient.Text);
+            string sqlQueryAddIntervention = "insert into CLIENT values (@client, @mail, @telephone, @adresse)";
+            using (SqlCommand sqlCommand = new SqlCommand(sqlQueryAddIntervention, connectionBaseSQL))
+            {
+                sqlCommand.Parameters.AddWithValue("client", textBoxNomClient.Text);
+                sqlCommand.Parameters.AddWithValue("mail", textBoxMailClient.Text);
+                sqlCommand.Parameters.AddWithValue("telephone", textBoxTelClient.Text);
+                sqlCommand.Parameters.AddWithValue("adresse", textBoxAdresseClient.Text);
 
-            sq.ExecuteNonQuery();
-            connectionBaseSQL.Close();
-
+                sqlCommand.ExecuteNonQuery();
+            }
             MessageBox.Show("Le Client a été ajouté avec succès !", "Résultat");
-
             loadClient();
             clearFields();
         }
 
-        private void clearFields()
-        {
-            textBoxNomClient.Text = textBoxMailClient.Text = textBoxTelClient.Text = textBoxAdresseClient.Text = string.Empty;
-        }
 
+        // ----------------------------------------------------------------------------
+        // Fonctions pour Vider les cellules des Clients
+        // ----------------------------------------------------------------------------
         private void buttonCleanClient_Click(object sender, EventArgs e)
         {
             this.clearFields();
@@ -146,16 +147,16 @@ namespace WindowsFormsAppOrdiCare
 
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
-            string updateClient = "update CLIENT set Nom = @leClient, Mail = @leMail, Tel = @leTelephone, Adresse = @leAdresse where ID_CLIENT = @idClient";
-            using (SqlCommand sq = new SqlCommand(updateClient, connectionBaseSQL))
+            string sqlQueryUpdateClient = "update CLIENT set Nom = @leClient, Mail = @leMail, Tel = @leTelephone, Adresse = @leAdresse where ID_CLIENT = @idClient";
+            using (SqlCommand sqlCommand = new SqlCommand(sqlQueryUpdateClient, connectionBaseSQL))
             {
-                sq.Parameters.AddWithValue("idClient", idReferenceClient);
-                sq.Parameters.AddWithValue("leClient", textBoxNomClient.Text);
-                sq.Parameters.AddWithValue("leMail", textBoxMailClient.Text);
-                sq.Parameters.AddWithValue("leTelephone", textBoxTelClient.Text);
-                sq.Parameters.AddWithValue("leAdresse", textBoxAdresseClient.Text);
+                sqlCommand.Parameters.AddWithValue("idClient", idReferenceClient);
+                sqlCommand.Parameters.AddWithValue("leClient", textBoxNomClient.Text);
+                sqlCommand.Parameters.AddWithValue("leMail", textBoxMailClient.Text);
+                sqlCommand.Parameters.AddWithValue("leTelephone", textBoxTelClient.Text);
+                sqlCommand.Parameters.AddWithValue("leAdresse", textBoxAdresseClient.Text);
 
-                sq.ExecuteNonQuery();
+                sqlCommand.ExecuteNonQuery();
             }
             MessageBox.Show("Le Client a été modifié avec succès !", "Résultat");
             loadClient();
@@ -181,16 +182,11 @@ namespace WindowsFormsAppOrdiCare
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
                 connectionBaseSQL.Open();
-                string deleteClient = "delete from CLIENT where ID_CLIENT = @idClient";
-                using (SqlCommand sq = new SqlCommand(deleteClient, connectionBaseSQL))
+                string sqlQuerydeleteClient = "delete from CLIENT where ID_CLIENT = @idClient";
+                using (SqlCommand sqlCommand = new SqlCommand(sqlQuerydeleteClient, connectionBaseSQL))
                 {
-                    sq.Parameters.AddWithValue("@idClient", idReferenceClient);
-                    sq.Parameters.AddWithValue("leClient", textBoxNomClient.Text);
-                    sq.Parameters.AddWithValue("leMail", textBoxMailClient.Text);
-                    sq.Parameters.AddWithValue("leTelephone", textBoxTelClient.Text);
-                    sq.Parameters.AddWithValue("leAdresse", textBoxAdresseClient.Text);
-
-                    sq.ExecuteNonQuery();
+                    sqlCommand.Parameters.AddWithValue("@idClient", idReferenceClient);
+                    sqlCommand.ExecuteNonQuery();
                 }
             }
             MessageBox.Show("Le Client a été supprimé avec succès !", "Résultat");
