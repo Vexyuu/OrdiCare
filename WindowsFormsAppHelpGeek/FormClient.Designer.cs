@@ -41,6 +41,10 @@
             this.listBoxClient = new System.Windows.Forms.ListBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
+            this.buttonAjouter = new System.Windows.Forms.Button();
+            this.buttonModifier = new System.Windows.Forms.Button();
+            this.buttonSupprimer = new System.Windows.Forms.Button();
+            this.buttonCleanClient = new System.Windows.Forms.Button();
             this.groupBoxMarqueText.SuspendLayout();
             this.groupBoxClient.SuspendLayout();
             this.SuspendLayout();
@@ -170,7 +174,7 @@
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Font = new System.Drawing.Font("Arial", 11F);
-            this.buttonCancel.Location = new System.Drawing.Point(472, 302);
+            this.buttonCancel.Location = new System.Drawing.Point(590, 350);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(129, 39);
             this.buttonCancel.TabIndex = 13;
@@ -181,18 +185,66 @@
             // 
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Font = new System.Drawing.Font("Arial", 11F);
-            this.buttonOK.Location = new System.Drawing.Point(322, 302);
+            this.buttonOK.Location = new System.Drawing.Point(440, 350);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(129, 39);
             this.buttonOK.TabIndex = 12;
             this.buttonOK.Text = "Valider";
             this.buttonOK.UseVisualStyleBackColor = true;
             // 
+            // buttonAjouter
+            // 
+            this.buttonAjouter.Font = new System.Drawing.Font("Arial", 10F);
+            this.buttonAjouter.Location = new System.Drawing.Point(254, 302);
+            this.buttonAjouter.Name = "buttonAjouter";
+            this.buttonAjouter.Size = new System.Drawing.Size(121, 31);
+            this.buttonAjouter.TabIndex = 16;
+            this.buttonAjouter.Text = "Ajouter";
+            this.buttonAjouter.UseVisualStyleBackColor = true;
+            this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
+            // 
+            // buttonModifier
+            // 
+            this.buttonModifier.Font = new System.Drawing.Font("Arial", 10F);
+            this.buttonModifier.Location = new System.Drawing.Point(417, 302);
+            this.buttonModifier.Name = "buttonModifier";
+            this.buttonModifier.Size = new System.Drawing.Size(121, 31);
+            this.buttonModifier.TabIndex = 17;
+            this.buttonModifier.Text = "Modifier";
+            this.buttonModifier.UseVisualStyleBackColor = true;
+            this.buttonModifier.Click += new System.EventHandler(this.buttonModifier_Click);
+            // 
+            // buttonSupprimer
+            // 
+            this.buttonSupprimer.Font = new System.Drawing.Font("Arial", 10F);
+            this.buttonSupprimer.Location = new System.Drawing.Point(579, 302);
+            this.buttonSupprimer.Name = "buttonSupprimer";
+            this.buttonSupprimer.Size = new System.Drawing.Size(121, 31);
+            this.buttonSupprimer.TabIndex = 18;
+            this.buttonSupprimer.Text = "Supprimer";
+            this.buttonSupprimer.UseVisualStyleBackColor = true;
+            this.buttonSupprimer.Click += new System.EventHandler(this.buttonSupprimer_Click);
+            // 
+            // buttonCleanClient
+            // 
+            this.buttonCleanClient.Font = new System.Drawing.Font("Arial", 10F);
+            this.buttonCleanClient.Location = new System.Drawing.Point(39, 355);
+            this.buttonCleanClient.Name = "buttonCleanClient";
+            this.buttonCleanClient.Size = new System.Drawing.Size(162, 31);
+            this.buttonCleanClient.TabIndex = 19;
+            this.buttonCleanClient.Text = "Vider les cellules";
+            this.buttonCleanClient.UseVisualStyleBackColor = true;
+            this.buttonCleanClient.Click += new System.EventHandler(this.buttonCleanClient_Click);
+            // 
             // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 353);
+            this.ClientSize = new System.Drawing.Size(731, 401);
+            this.Controls.Add(this.buttonCleanClient);
+            this.Controls.Add(this.buttonSupprimer);
+            this.Controls.Add(this.buttonModifier);
+            this.Controls.Add(this.buttonAjouter);
             this.Controls.Add(this.groupBoxMarqueText);
             this.Controls.Add(this.groupBoxClient);
             this.Controls.Add(this.buttonCancel);
@@ -224,5 +276,9 @@
         private System.Windows.Forms.Label labelMailClient;
         private System.Windows.Forms.TextBox textBoxAdresseClient;
         private System.Windows.Forms.Label labelAdresseClient;
+        private System.Windows.Forms.Button buttonAjouter;
+        private System.Windows.Forms.Button buttonModifier;
+        private System.Windows.Forms.Button buttonSupprimer;
+        private System.Windows.Forms.Button buttonCleanClient;
     }
 }

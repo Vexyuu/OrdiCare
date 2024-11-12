@@ -65,60 +65,61 @@ namespace WindowsFormsAppOrdiCare
         // Fonction pour vérifier la connexion de l'utilisateur
         private bool checkConnexion(string lelogin, string lepwd)
         {
-            SqlConnection cn = new SqlConnection(this.strConnexion);
-            cn.Open();
+            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
+            {
+                connectionBaseSQL.Open();
+                string strsql = "select count(*) as nb from Login where Nom = @lenom and Password = @lepwd";
+                using (SqlCommand sq = new SqlCommand(strsql, connectionBaseSQL))
+                {
+                    sq.Parameters.AddWithValue("@lenom", lelogin);
+                    sq.Parameters.AddWithValue("@lepwd", lepwd);
 
-            string strsql = "select count(*) as nb from Login where " +
-                "Nom = @lenom and Password = @lepwd";
-
-            SqlCommand sq = new SqlCommand(strsql, cn);
-            sq.Parameters.AddWithValue("lenom", lelogin);
-            sq.Parameters.AddWithValue("lepwd", lepwd);
-
-            SqlDataReader dr = sq.ExecuteReader();
-
-            dr.Read();
-            int nb = Convert.ToInt32(dr["nb"]);
-
-            if (nb > 0)
-                return true;
-            else
-                return false;
+                    using (SqlDataReader dr = sq.ExecuteReader())
+                    {
+                        if (dr.Read() && Convert.ToInt32(dr["nb"]) > 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
+
         // ----------------------------------------------------------------------------
-        // Fonctions pour charger les Matériels et les Clients
+        // Fonctions pour charger les Matériels
         // ----------------------------------------------------------------------------
         private void loadMateriel()
         {
-            SqlConnection cn = new SqlConnection(this.strConnexion);
-            cn.Open();
-
-            string strsql = "select nom from PRODUIT order by nom";
-
-            SqlCommand sq = new SqlCommand(strsql, cn);
-
-            SqlDataReader drp = sq.ExecuteReader();
-
-            comboBoxMateriel.Items.Clear();
-
-            while (drp.Read() == true)
+            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
-                string pro = drp["nom"].ToString();
-                comboBoxMateriel.Items.Add(pro);
+                connectionBaseSQL.Open();
+                string strsql = "select nom from PRODUIT order by nom";
+                using (SqlCommand sq = new SqlCommand(strsql, connectionBaseSQL))
+                using (SqlDataReader drp = sq.ExecuteReader())
+                {
+                    comboBoxMateriel.Items.Clear();
+                    while (drp.Read())
+                    {
+                        string pro = drp["nom"].ToString();
+                        comboBoxMateriel.Items.Add(pro);
+                    }
+                }
             }
-            drp.Close();
-            cn.Close();
         }
 
+        // ----------------------------------------------------------------------------
+        // Fonctions pour charger les Clients
+        // ----------------------------------------------------------------------------
         private void loadClient()
         {
-            SqlConnection cn = new SqlConnection(this.strConnexion);
-            cn.Open();
+            SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
+            connectionBaseSQL.Open();
 
             string strsql = "select nom from CLIENT order by nom";
 
-            SqlCommand sq = new SqlCommand(strsql, cn);
+            SqlCommand sq = new SqlCommand(strsql, connectionBaseSQL);
 
             SqlDataReader drp = sq.ExecuteReader();
 
@@ -130,7 +131,7 @@ namespace WindowsFormsAppOrdiCare
                 comboBoxClient.Items.Add(pro);
             }
             drp.Close();
-            cn.Close();
+            connectionBaseSQL.Close();
         }
         // ----------------------------------------------------------------------------
         // Fonction pour valider la Création de l'intervention
@@ -156,6 +157,7 @@ namespace WindowsFormsAppOrdiCare
                     return;
             }
 
+            //Check du produit
             int posprod = comboBoxMateriel.SelectedIndex;
             if (posprod == -1)
             {
@@ -170,12 +172,15 @@ namespace WindowsFormsAppOrdiCare
             MajDateInstall(idMatos, dateTimePickerDate.Value); //Mise à jour de la date d'installation
         }
 
+        // ----------------------------------------------------------------------------
+        // Fonction pour ajouter une intervention
+        // ----------------------------------------------------------------------------
         private void AddIntervention(decimal resultatPrix, int idMatos)
         {
-            SqlConnection cn = new SqlConnection(this.strConnexion);
-            cn.Open();
+            SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
+            connectionBaseSQL.Open();
             string addinter = "insert into INTERVENTION values (@lobjet, @ladate, @lecommentaire, @leprix, @lid)";
-            SqlCommand sq = new SqlCommand(addinter, cn);
+            SqlCommand sq = new SqlCommand(addinter, connectionBaseSQL);
             sq.Parameters.AddWithValue("lobjet", textBoxObjetIntervention.Text);
             sq.Parameters.AddWithValue("ladate", dateTimePickerDate.Value);
             sq.Parameters.AddWithValue("lecommentaire", textBoxCommentaire.Text);
@@ -183,48 +188,48 @@ namespace WindowsFormsAppOrdiCare
             sq.Parameters.AddWithValue("lid", idMatos);
 
             sq.ExecuteNonQuery();
-            cn.Close();
+            connectionBaseSQL.Close();
 
             MessageBox.Show("Intervention créée", "Résultat");
         }
 
         private void MajDateInstall(int  idMatos, DateTime dateInstall)
         {
-            SqlConnection cn = new SqlConnection(this.strConnexion);
-            cn.Open();
+            SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
+            connectionBaseSQL.Open();
 
             string majSql = "update PRODUIT set Date_Installation = @ladate where ID_PROD = @idProduit";
-            SqlCommand sq = new SqlCommand(majSql, cn);
+            SqlCommand sq = new SqlCommand(majSql, connectionBaseSQL);
             sq.Parameters.AddWithValue("ladate", dateInstall);
             sq.Parameters.AddWithValue("idProduit", idMatos);
 
             sq.ExecuteNonQuery();
 
-            cn.Close();
+            connectionBaseSQL.Close();
         }
 
         private int getProduitID(string produit)
         {
-            SqlConnection cn = new SqlConnection(this.strConnexion);
-            cn.Open();
-
-            string strsql = "select ID_PROD from PRODUIT where Nom = '" + produit + "'";
-            SqlCommand sq = new SqlCommand(strsql, cn);
-            SqlDataReader drp = sq.ExecuteReader();
-
-            drp.Read();
-            int id = Convert.ToInt32(drp["ID_PROD"]);
-
-            drp.Close();
-            cn.Close();
-
-            if (sq != null)
-                sq.Dispose();
-
-            if (cn != null)
-                cn.Dispose();
-
-            return id;
+            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
+            {
+                connectionBaseSQL.Open();
+                string strsql = "select ID_PROD from PRODUIT where Nom = @nom";
+                using (SqlCommand sq = new SqlCommand(strsql, connectionBaseSQL))
+                {
+                    sq.Parameters.AddWithValue("@nom", produit);
+                    using (SqlDataReader drp = sq.ExecuteReader())
+                    {
+                        if (drp.Read())
+                        {
+                            return Convert.ToInt32(drp["ID_PROD"]);
+                        }
+                        else
+                        {
+                            throw new Exception("Produit introuvable");
+                        }
+                    }
+                }
+            }
         }
 
         private void marqueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -233,7 +238,7 @@ namespace WindowsFormsAppOrdiCare
             formMarque.ShowDialog();
         }
 
-        private void clienToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clientToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormClient formClient = new FormClient();
             formClient.ShowDialog();
