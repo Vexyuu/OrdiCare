@@ -105,7 +105,7 @@ namespace WindowsFormsAppOrdiCare
                     sqlCommand.ExecuteNonQuery();
                 }
             }
-            MessageBox.Show("Le Client a été supprimé avec succès !", "Résultat");
+            MessageBox.Show("L'intervention a été supprimé avec succès !", "Résultat");
             loadIntervention();
             clearFields();
         }
