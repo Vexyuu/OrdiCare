@@ -23,9 +23,9 @@ namespace WindowsFormsAppOrdiCare
         public FormMain()
         {
             InitializeComponent();
-            loadMateriel();
-            loadClient();
-            loadMarque();
+            LoadMateriel();
+            LoadClient();
+            LoadMarque();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace WindowsFormsAppOrdiCare
         // ----------------------------------------------------------------------------
         // Fonctions pour charger les Matériels
         // ----------------------------------------------------------------------------
-        private void loadMateriel()
+        private void LoadMateriel()
         {
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
@@ -109,7 +109,7 @@ namespace WindowsFormsAppOrdiCare
         // ----------------------------------------------------------------------------
         // Fonctions pour charger les Clients
         // ----------------------------------------------------------------------------
-        private void loadClient()
+        private void LoadClient()
         {
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
@@ -128,7 +128,7 @@ namespace WindowsFormsAppOrdiCare
         // ----------------------------------------------------------------------------
         // Fonction pour valider la Création de l'intervention
         // ----------------------------------------------------------------------------
-        private void loadMarque()
+        private void LoadMarque()
         {
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
@@ -143,6 +143,14 @@ namespace WindowsFormsAppOrdiCare
             }
             drp.Close();
             connectionBaseSQL.Close();
+        }
+
+        // ----------------------------------------------------------------------------
+        // Fonction pour valider la Création de l'intervention
+        // ----------------------------------------------------------------------------
+        private void ClearFields()
+        {
+            textBoxObjetIntervention.Text = textBoxCommentaire.Text = comboBoxMateriel.Text = textBoxPrix.Text = comboBoxClient.Text = comboBoxMarque.Text = string.Empty;
         }
         // ----------------------------------------------------------------------------
         // Fonction pour valider la Création de l'intervention
@@ -176,12 +184,14 @@ namespace WindowsFormsAppOrdiCare
                 return;
             }
 
-            int idMatos = getProduitID(comboBoxMateriel.SelectedItem.ToString());
-            int idClient = getClientID(comboBoxClient.SelectedItem.ToString());
-            int idMarque = getMarqueID(comboBoxMarque.SelectedItem.ToString());
+            int idMatos = GetProduitID(comboBoxMateriel.SelectedItem.ToString());
+            int idClient = GetClientID(comboBoxClient.SelectedItem.ToString());
+            int idMarque = GetMarqueID(comboBoxMarque.SelectedItem.ToString());
 
             AddIntervention(resultatPrix, idMatos, idClient, idMarque);  // Création d'un intervention
             MajDateInstall(idMatos, dateTimePickerDate.Value); //Mise à jour de la date d'installation
+
+            
         }
 
         // ----------------------------------------------------------------------------
@@ -209,6 +219,9 @@ namespace WindowsFormsAppOrdiCare
             MessageBox.Show("Intervention créée", "Résultat");
         }
 
+        // ----------------------------------------------------------------------------
+        // Fonction pour les Composents d'une intervention
+        // ----------------------------------------------------------------------------
         private void MajDateInstall(int idMatos, DateTime dateInstall)
         {
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
@@ -224,7 +237,7 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
-        private int getProduitID(string produit)
+        private int GetProduitID(string produit)
         {
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
@@ -248,7 +261,7 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
-        private int getClientID(string produit)
+        private int GetClientID(string produit)
         {
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
@@ -272,7 +285,7 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
-        private int getMarqueID(string produit)
+        private int GetMarqueID(string produit)
         {
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
@@ -296,6 +309,9 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
+        // ----------------------------------------------------------------------------
+        // Fonctions pour les différents Menu
+        // ----------------------------------------------------------------------------
         private void marqueToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormMarque formMarque = new FormMarque();
@@ -312,6 +328,33 @@ namespace WindowsFormsAppOrdiCare
         {
             FormIntervention formIntervention = new FormIntervention();
             formIntervention.ShowDialog();
+        }
+
+        private void listeDesTechniciensToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormTechnicien formTechnicien = new FormTechnicien();
+            formTechnicien.ShowDialog();
+        }
+
+        private void fermerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Êtes-vous sûr de vouloir quitter ?", "Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void toolStripButtonClearField_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private void produitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormProduit formProduit = new FormProduit();
+            formProduit.ShowDialog();
         }
     }
 }

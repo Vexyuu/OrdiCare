@@ -34,18 +34,14 @@
             this.buttonModifier = new System.Windows.Forms.Button();
             this.buttonAjouter = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxAdresseClient = new System.Windows.Forms.TextBox();
-            this.labelAdresseClient = new System.Windows.Forms.Label();
-            this.labelTelClient = new System.Windows.Forms.Label();
-            this.textBoxTelClient = new System.Windows.Forms.TextBox();
-            this.textBoxMailClient = new System.Windows.Forms.TextBox();
-            this.labelMailClient = new System.Windows.Forms.Label();
             this.labelNomClient = new System.Windows.Forms.Label();
-            this.textBoxNomClient = new System.Windows.Forms.TextBox();
+            this.textBoxNomMarque = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.pictureBoxMarque = new System.Windows.Forms.PictureBox();
             this.groupBoxMarque.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMarque)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxMarque
@@ -57,6 +53,7 @@
             this.listBoxMarque.Name = "listBoxMarque";
             this.listBoxMarque.Size = new System.Drawing.Size(203, 277);
             this.listBoxMarque.TabIndex = 8;
+            this.listBoxMarque.SelectedIndexChanged += new System.EventHandler(this.listBoxMarque_SelectedIndexChanged);
             // 
             // groupBoxMarque
             // 
@@ -101,14 +98,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBoxAdresseClient);
-            this.groupBox1.Controls.Add(this.labelAdresseClient);
-            this.groupBox1.Controls.Add(this.labelTelClient);
-            this.groupBox1.Controls.Add(this.textBoxTelClient);
-            this.groupBox1.Controls.Add(this.textBoxMailClient);
-            this.groupBox1.Controls.Add(this.labelMailClient);
+            this.groupBox1.Controls.Add(this.pictureBoxMarque);
             this.groupBox1.Controls.Add(this.labelNomClient);
-            this.groupBox1.Controls.Add(this.textBoxNomClient);
+            this.groupBox1.Controls.Add(this.textBoxNomMarque);
             this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(282, 12);
             this.groupBox1.Name = "groupBox1";
@@ -116,67 +108,6 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Plus d\'informations";
-            // 
-            // textBoxAdresseClient
-            // 
-            this.textBoxAdresseClient.Font = new System.Drawing.Font("Arial", 11F);
-            this.textBoxAdresseClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxAdresseClient.Location = new System.Drawing.Point(143, 175);
-            this.textBoxAdresseClient.Multiline = true;
-            this.textBoxAdresseClient.Name = "textBoxAdresseClient";
-            this.textBoxAdresseClient.Size = new System.Drawing.Size(303, 49);
-            this.textBoxAdresseClient.TabIndex = 29;
-            // 
-            // labelAdresseClient
-            // 
-            this.labelAdresseClient.AutoSize = true;
-            this.labelAdresseClient.Font = new System.Drawing.Font("Arial", 12F);
-            this.labelAdresseClient.ForeColor = System.Drawing.Color.Black;
-            this.labelAdresseClient.Location = new System.Drawing.Point(6, 176);
-            this.labelAdresseClient.Name = "labelAdresseClient";
-            this.labelAdresseClient.Size = new System.Drawing.Size(95, 23);
-            this.labelAdresseClient.TabIndex = 28;
-            this.labelAdresseClient.Text = "Adresse :";
-            // 
-            // labelTelClient
-            // 
-            this.labelTelClient.AutoSize = true;
-            this.labelTelClient.Font = new System.Drawing.Font("Arial", 12F);
-            this.labelTelClient.ForeColor = System.Drawing.Color.Black;
-            this.labelTelClient.Location = new System.Drawing.Point(6, 132);
-            this.labelTelClient.Name = "labelTelClient";
-            this.labelTelClient.Size = new System.Drawing.Size(47, 23);
-            this.labelTelClient.TabIndex = 27;
-            this.labelTelClient.Text = "Tel :";
-            // 
-            // textBoxTelClient
-            // 
-            this.textBoxTelClient.Font = new System.Drawing.Font("Arial", 11F);
-            this.textBoxTelClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxTelClient.Location = new System.Drawing.Point(143, 131);
-            this.textBoxTelClient.Name = "textBoxTelClient";
-            this.textBoxTelClient.Size = new System.Drawing.Size(303, 29);
-            this.textBoxTelClient.TabIndex = 26;
-            // 
-            // textBoxMailClient
-            // 
-            this.textBoxMailClient.Font = new System.Drawing.Font("Arial", 11F);
-            this.textBoxMailClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxMailClient.Location = new System.Drawing.Point(143, 81);
-            this.textBoxMailClient.Name = "textBoxMailClient";
-            this.textBoxMailClient.Size = new System.Drawing.Size(303, 29);
-            this.textBoxMailClient.TabIndex = 25;
-            // 
-            // labelMailClient
-            // 
-            this.labelMailClient.AutoSize = true;
-            this.labelMailClient.Font = new System.Drawing.Font("Arial", 12F);
-            this.labelMailClient.ForeColor = System.Drawing.Color.Black;
-            this.labelMailClient.Location = new System.Drawing.Point(6, 82);
-            this.labelMailClient.Name = "labelMailClient";
-            this.labelMailClient.Size = new System.Drawing.Size(58, 23);
-            this.labelMailClient.TabIndex = 24;
-            this.labelMailClient.Text = "Mail :";
             // 
             // labelNomClient
             // 
@@ -189,14 +120,14 @@
             this.labelNomClient.TabIndex = 23;
             this.labelNomClient.Text = "Nom :";
             // 
-            // textBoxNomClient
+            // textBoxNomMarque
             // 
-            this.textBoxNomClient.Font = new System.Drawing.Font("Arial", 11F);
-            this.textBoxNomClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNomClient.Location = new System.Drawing.Point(143, 35);
-            this.textBoxNomClient.Name = "textBoxNomClient";
-            this.textBoxNomClient.Size = new System.Drawing.Size(303, 29);
-            this.textBoxNomClient.TabIndex = 22;
+            this.textBoxNomMarque.Font = new System.Drawing.Font("Arial", 11F);
+            this.textBoxNomMarque.ForeColor = System.Drawing.Color.Black;
+            this.textBoxNomMarque.Location = new System.Drawing.Point(143, 35);
+            this.textBoxNomMarque.Name = "textBoxNomMarque";
+            this.textBoxNomMarque.Size = new System.Drawing.Size(303, 29);
+            this.textBoxNomMarque.TabIndex = 22;
             // 
             // button1
             // 
@@ -220,6 +151,14 @@
             this.button2.Text = "Valider";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxMarque
+            // 
+            this.pictureBoxMarque.Location = new System.Drawing.Point(143, 84);
+            this.pictureBoxMarque.Name = "pictureBoxMarque";
+            this.pictureBoxMarque.Size = new System.Drawing.Size(303, 154);
+            this.pictureBoxMarque.TabIndex = 24;
+            this.pictureBoxMarque.TabStop = false;
+            // 
             // FormMarque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -240,6 +179,7 @@
             this.groupBoxMarque.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMarque)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -251,15 +191,10 @@
         private System.Windows.Forms.Button buttonModifier;
         private System.Windows.Forms.Button buttonAjouter;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBoxAdresseClient;
-        private System.Windows.Forms.Label labelAdresseClient;
-        private System.Windows.Forms.Label labelTelClient;
-        private System.Windows.Forms.TextBox textBoxTelClient;
-        private System.Windows.Forms.TextBox textBoxMailClient;
-        private System.Windows.Forms.Label labelMailClient;
         private System.Windows.Forms.Label labelNomClient;
-        private System.Windows.Forms.TextBox textBoxNomClient;
+        private System.Windows.Forms.TextBox textBoxNomMarque;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pictureBoxMarque;
     }
 }

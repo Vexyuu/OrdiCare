@@ -9,23 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsAppOrdiCare
-{
-    public partial class FormClient : Form
+namespace WindowsFormsAppOrdiCare                                                   
+{                                                                                   
+    public partial class FormProduit : Form                                         
     {
-        private string strConnexion = "Server=.\\SQLEXPRESS;" +
-            "Database=OrdiCare;Trusted_Connection=True";
-        public FormClient()
-        {
+        private string StrConnexion = "Server=.\\SQLEXPRESS;" + "Database=OrdiCare;Trusted_Connection=True";
+        public FormProduit()                                                        
+        {                                                                           
             InitializeComponent();
-            loadClient();
+            LoadProduit();
         }
-        private void loadClient()
+    // INSERT INTO PRODUIT VALUES (@nom, @desc, @di, " + " @co, @mbtf, @idm, @idc)";
+        private void LoadProduit()
         {
-            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
+            using (SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion))
             {
                 connectionBaseSQL.Open();
-                string sqlQuery = "select ID_CLIENT, Nom from CLIENT order by nom";
+                string sqlQuery = "select ID_PRODUIT, Nom from PRODUIT order by nom";
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
                 using (SqlDataReader drp = sqlCommand.ExecuteReader())
                 {
@@ -42,19 +42,18 @@ namespace WindowsFormsAppOrdiCare
         }
         private void ClearFields()
         {
-            textBoxNomProduit.Text = textBoxMailClient.Text = textBoxTelClient.Text = textBoxAdresseClient.Text = string.Empty;
+            textBoxNomProduit.Text = textBoxDescriptionProduit.Text = dateTimePickerDate.Value = textBoxCodeProduit.Text = textBoxMBTFProduit.Text = textBoxMarqueProduit.Text = textBoxClientProduit.Text = string.Empty;
         }
 
         // ----------------------------------------------------------------------------
-        // Fonctions pour Séléctionner les Clients
+        // Fonctions pour Séléctionner les Produits
         // ----------------------------------------------------------------------------
-        private void listBoxClient_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxProduit_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClassItem it = (ClassItem)listBoxProduit.SelectedItem;
             int idReferenceClient = it.getId();
 
-            // string leNom = listBoxClient.SelectedItem.ToString();
-            SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
+            SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion);
             connectionBaseSQL.Open();
             string sqlQuery = "select * from CLIENT where ID_CLIENT = @id";
             using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
@@ -65,8 +64,8 @@ namespace WindowsFormsAppOrdiCare
                     if (drp.Read())
                     {
                         textBoxNomProduit.Text = drp["Nom"].ToString();
-                        textBoxMailClient.Text = drp["Mail"].ToString();
-                        textBoxTelClient.Text = drp["Tel"].ToString();
+                        textBoxDescriptionProduit.Text = drp["Mail"].ToString();
+                        dateTimePickerDate.Value = drp["Date_Installation"].ToString();
                         textBoxAdresseClient.Text = drp["Adresse"].ToString();
                     }
                 }
@@ -192,5 +191,7 @@ namespace WindowsFormsAppOrdiCare
             loadClient();
             ClearFields();
         }
+
+        
     }
 }

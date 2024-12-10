@@ -28,44 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxMarqueText = new System.Windows.Forms.GroupBox();
+            this.groupBoxProduitText = new System.Windows.Forms.GroupBox();
             this.textBoxAdresseClient = new System.Windows.Forms.TextBox();
             this.labelAdresseClient = new System.Windows.Forms.Label();
             this.labelTelClient = new System.Windows.Forms.Label();
             this.textBoxTelClient = new System.Windows.Forms.TextBox();
             this.textBoxMailClient = new System.Windows.Forms.TextBox();
             this.labelMailClient = new System.Windows.Forms.Label();
-            this.labelNomClient = new System.Windows.Forms.Label();
-            this.textBoxNomClient = new System.Windows.Forms.TextBox();
-            this.groupBoxClient = new System.Windows.Forms.GroupBox();
-            this.listBoxClient = new System.Windows.Forms.ListBox();
+            this.labelNomProduit = new System.Windows.Forms.Label();
+            this.textBoxNomProduit = new System.Windows.Forms.TextBox();
+            this.groupBoxProduit = new System.Windows.Forms.GroupBox();
+            this.listBoxProduit = new System.Windows.Forms.ListBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonAjouter = new System.Windows.Forms.Button();
             this.buttonModifier = new System.Windows.Forms.Button();
             this.buttonSupprimer = new System.Windows.Forms.Button();
             this.buttonCleanClient = new System.Windows.Forms.Button();
-            this.groupBoxMarqueText.SuspendLayout();
-            this.groupBoxClient.SuspendLayout();
+            this.groupBoxProduitText.SuspendLayout();
+            this.groupBoxProduit.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBoxMarqueText
+            // groupBoxProduitText
             // 
-            this.groupBoxMarqueText.Controls.Add(this.textBoxAdresseClient);
-            this.groupBoxMarqueText.Controls.Add(this.labelAdresseClient);
-            this.groupBoxMarqueText.Controls.Add(this.labelTelClient);
-            this.groupBoxMarqueText.Controls.Add(this.textBoxTelClient);
-            this.groupBoxMarqueText.Controls.Add(this.textBoxMailClient);
-            this.groupBoxMarqueText.Controls.Add(this.labelMailClient);
-            this.groupBoxMarqueText.Controls.Add(this.labelNomClient);
-            this.groupBoxMarqueText.Controls.Add(this.textBoxNomClient);
-            this.groupBoxMarqueText.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold);
-            this.groupBoxMarqueText.Location = new System.Drawing.Point(254, 37);
-            this.groupBoxMarqueText.Name = "groupBoxMarqueText";
-            this.groupBoxMarqueText.Size = new System.Drawing.Size(452, 244);
-            this.groupBoxMarqueText.TabIndex = 15;
-            this.groupBoxMarqueText.TabStop = false;
-            this.groupBoxMarqueText.Text = "Plus d\'informations";
+            this.groupBoxProduitText.Controls.Add(this.textBoxAdresseClient);
+            this.groupBoxProduitText.Controls.Add(this.labelAdresseClient);
+            this.groupBoxProduitText.Controls.Add(this.labelTelClient);
+            this.groupBoxProduitText.Controls.Add(this.textBoxTelClient);
+            this.groupBoxProduitText.Controls.Add(this.textBoxMailClient);
+            this.groupBoxProduitText.Controls.Add(this.labelMailClient);
+            this.groupBoxProduitText.Controls.Add(this.labelNomProduit);
+            this.groupBoxProduitText.Controls.Add(this.textBoxNomProduit);
+            this.groupBoxProduitText.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold);
+            this.groupBoxProduitText.Location = new System.Drawing.Point(254, 37);
+            this.groupBoxProduitText.Name = "groupBoxProduitText";
+            this.groupBoxProduitText.Size = new System.Drawing.Size(452, 244);
+            this.groupBoxProduitText.TabIndex = 15;
+            this.groupBoxProduitText.TabStop = false;
+            this.groupBoxProduitText.Text = "Plus d\'informations";
             // 
             // textBoxAdresseClient
             // 
@@ -128,47 +128,47 @@
             this.labelMailClient.TabIndex = 24;
             this.labelMailClient.Text = "Mail :";
             // 
-            // labelNomClient
+            // labelNomProduit
             // 
-            this.labelNomClient.AutoSize = true;
-            this.labelNomClient.Font = new System.Drawing.Font("Arial", 12F);
-            this.labelNomClient.ForeColor = System.Drawing.Color.Black;
-            this.labelNomClient.Location = new System.Drawing.Point(6, 36);
-            this.labelNomClient.Name = "labelNomClient";
-            this.labelNomClient.Size = new System.Drawing.Size(62, 23);
-            this.labelNomClient.TabIndex = 23;
-            this.labelNomClient.Text = "Nom :";
+            this.labelNomProduit.AutoSize = true;
+            this.labelNomProduit.Font = new System.Drawing.Font("Arial", 12F);
+            this.labelNomProduit.ForeColor = System.Drawing.Color.Black;
+            this.labelNomProduit.Location = new System.Drawing.Point(6, 36);
+            this.labelNomProduit.Name = "labelNomProduit";
+            this.labelNomProduit.Size = new System.Drawing.Size(62, 23);
+            this.labelNomProduit.TabIndex = 23;
+            this.labelNomProduit.Text = "Nom :";
             // 
-            // textBoxNomClient
+            // textBoxNomProduit
             // 
-            this.textBoxNomClient.Font = new System.Drawing.Font("Arial", 11F);
-            this.textBoxNomClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNomClient.Location = new System.Drawing.Point(143, 35);
-            this.textBoxNomClient.Name = "textBoxNomClient";
-            this.textBoxNomClient.Size = new System.Drawing.Size(303, 29);
-            this.textBoxNomClient.TabIndex = 22;
+            this.textBoxNomProduit.Font = new System.Drawing.Font("Arial", 11F);
+            this.textBoxNomProduit.ForeColor = System.Drawing.Color.Black;
+            this.textBoxNomProduit.Location = new System.Drawing.Point(143, 35);
+            this.textBoxNomProduit.Name = "textBoxNomProduit";
+            this.textBoxNomProduit.Size = new System.Drawing.Size(303, 29);
+            this.textBoxNomProduit.TabIndex = 22;
             // 
-            // groupBoxClient
+            // groupBoxProduit
             // 
-            this.groupBoxClient.Controls.Add(this.listBoxClient);
-            this.groupBoxClient.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold);
-            this.groupBoxClient.Location = new System.Drawing.Point(15, 21);
-            this.groupBoxClient.Name = "groupBoxClient";
-            this.groupBoxClient.Size = new System.Drawing.Size(216, 320);
-            this.groupBoxClient.TabIndex = 14;
-            this.groupBoxClient.TabStop = false;
-            this.groupBoxClient.Text = "Liste des clients";
+            this.groupBoxProduit.Controls.Add(this.listBoxProduit);
+            this.groupBoxProduit.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold);
+            this.groupBoxProduit.Location = new System.Drawing.Point(15, 21);
+            this.groupBoxProduit.Name = "groupBoxProduit";
+            this.groupBoxProduit.Size = new System.Drawing.Size(216, 320);
+            this.groupBoxProduit.TabIndex = 14;
+            this.groupBoxProduit.TabStop = false;
+            this.groupBoxProduit.Text = "Liste des clients";
             // 
-            // listBoxClient
+            // listBoxProduit
             // 
-            this.listBoxClient.Font = new System.Drawing.Font("Arial", 11F);
-            this.listBoxClient.FormattingEnabled = true;
-            this.listBoxClient.ItemHeight = 21;
-            this.listBoxClient.Location = new System.Drawing.Point(6, 35);
-            this.listBoxClient.Name = "listBoxClient";
-            this.listBoxClient.Size = new System.Drawing.Size(203, 277);
-            this.listBoxClient.TabIndex = 8;
-            this.listBoxClient.SelectedIndexChanged += new System.EventHandler(this.listBoxClient_SelectedIndexChanged);
+            this.listBoxProduit.Font = new System.Drawing.Font("Arial", 11F);
+            this.listBoxProduit.FormattingEnabled = true;
+            this.listBoxProduit.ItemHeight = 21;
+            this.listBoxProduit.Location = new System.Drawing.Point(6, 35);
+            this.listBoxProduit.Name = "listBoxProduit";
+            this.listBoxProduit.Size = new System.Drawing.Size(203, 277);
+            this.listBoxProduit.TabIndex = 8;
+            this.listBoxProduit.SelectedIndexChanged += new System.EventHandler(this.listBoxClient_SelectedIndexChanged);
             // 
             // buttonCancel
             // 
@@ -245,8 +245,8 @@
             this.Controls.Add(this.buttonSupprimer);
             this.Controls.Add(this.buttonModifier);
             this.Controls.Add(this.buttonAjouter);
-            this.Controls.Add(this.groupBoxMarqueText);
-            this.Controls.Add(this.groupBoxClient);
+            this.Controls.Add(this.groupBoxProduitText);
+            this.Controls.Add(this.groupBoxProduit);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.MaximizeBox = false;
@@ -254,22 +254,22 @@
             this.Name = "FormClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormClient";
-            this.groupBoxMarqueText.ResumeLayout(false);
-            this.groupBoxMarqueText.PerformLayout();
-            this.groupBoxClient.ResumeLayout(false);
+            this.groupBoxProduitText.ResumeLayout(false);
+            this.groupBoxProduitText.PerformLayout();
+            this.groupBoxProduit.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBoxMarqueText;
-        private System.Windows.Forms.GroupBox groupBoxClient;
-        private System.Windows.Forms.ListBox listBoxClient;
+        private System.Windows.Forms.GroupBox groupBoxProduitText;
+        private System.Windows.Forms.GroupBox groupBoxProduit;
+        private System.Windows.Forms.ListBox listBoxProduit;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOK;
-        private System.Windows.Forms.TextBox textBoxNomClient;
-        private System.Windows.Forms.Label labelNomClient;
+        private System.Windows.Forms.TextBox textBoxNomProduit;
+        private System.Windows.Forms.Label labelNomProduit;
         private System.Windows.Forms.Label labelTelClient;
         private System.Windows.Forms.TextBox textBoxTelClient;
         private System.Windows.Forms.TextBox textBoxMailClient;
