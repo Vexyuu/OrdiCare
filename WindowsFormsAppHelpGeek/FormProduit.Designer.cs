@@ -280,7 +280,7 @@
             this.listBoxProduit.Name = "listBoxProduit";
             this.listBoxProduit.Size = new System.Drawing.Size(240, 298);
             this.listBoxProduit.TabIndex = 8;
-            this.listBoxProduit.SelectedIndexChanged += new System.EventHandler(this.listBoxProduit_SelectedIndexChanged);
+            //this.listBoxProduit.SelectedIndexChanged += new System.EventHandler(this.listBoxProduit_SelectedIndexChanged);
             // 
             // buttonCancel
             // 

@@ -30,6 +30,16 @@ namespace WindowsFormsAppOrdiCare
             this.lepwd = textBoxPwd.Text;
         }
 
+        private void buttonShHiPassword_Click(object sender, EventArgs e)
+        {
+            // Inverser l'état d'affichage du mot de passe
+            textBoxPwd.UseSystemPasswordChar = !textBoxPwd.UseSystemPasswordChar;
+
+            // Modifier le texte du bouton pour refléter l'action possible
+            buttonShHiPassword.Text = textBoxPwd.UseSystemPasswordChar ? "Afficher" : "Masquer";
+        }
+
+
         public string getPwd()
         {
             return this.lepwd;

@@ -35,6 +35,7 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.GroupBoxConnect = new System.Windows.Forms.GroupBox();
+            this.buttonShHiPassword = new System.Windows.Forms.Button();
             this.GroupBoxConnect.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +43,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 12F);
-            this.label1.Location = new System.Drawing.Point(69, 70);
+            this.label1.Location = new System.Drawing.Point(89, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 23);
             this.label1.TabIndex = 0;
@@ -51,7 +52,7 @@
             // textBoxLogin
             // 
             this.textBoxLogin.Font = new System.Drawing.Font("Arial", 11F);
-            this.textBoxLogin.Location = new System.Drawing.Point(304, 69);
+            this.textBoxLogin.Location = new System.Drawing.Point(275, 69);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(129, 29);
             this.textBoxLogin.TabIndex = 1;
@@ -59,17 +60,17 @@
             // textBoxPwd
             // 
             this.textBoxPwd.Font = new System.Drawing.Font("Arial", 11F);
-            this.textBoxPwd.Location = new System.Drawing.Point(304, 131);
+            this.textBoxPwd.Location = new System.Drawing.Point(275, 131);
             this.textBoxPwd.Name = "textBoxPwd";
-            this.textBoxPwd.PasswordChar = '*';
             this.textBoxPwd.Size = new System.Drawing.Size(129, 29);
             this.textBoxPwd.TabIndex = 3;
+            this.textBoxPwd.UseSystemPasswordChar = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F);
-            this.label2.Location = new System.Drawing.Point(69, 132);
+            this.label2.Location = new System.Drawing.Point(89, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 23);
             this.label2.TabIndex = 2;
@@ -79,7 +80,7 @@
             // 
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Font = new System.Drawing.Font("Arial", 11F);
-            this.buttonOK.Location = new System.Drawing.Point(74, 206);
+            this.buttonOK.Location = new System.Drawing.Point(94, 206);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(129, 39);
             this.buttonOK.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Font = new System.Drawing.Font("Arial", 11F);
-            this.buttonCancel.Location = new System.Drawing.Point(304, 206);
+            this.buttonCancel.Location = new System.Drawing.Point(275, 206);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(129, 39);
             this.buttonCancel.TabIndex = 5;
@@ -100,6 +101,7 @@
             // 
             // GroupBoxConnect
             // 
+            this.GroupBoxConnect.Controls.Add(this.buttonShHiPassword);
             this.GroupBoxConnect.Controls.Add(this.label2);
             this.GroupBoxConnect.Controls.Add(this.buttonCancel);
             this.GroupBoxConnect.Controls.Add(this.label1);
@@ -108,12 +110,23 @@
             this.GroupBoxConnect.Controls.Add(this.textBoxPwd);
             this.GroupBoxConnect.Font = new System.Drawing.Font("Arial Narrow", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupBoxConnect.ForeColor = System.Drawing.Color.Black;
-            this.GroupBoxConnect.Location = new System.Drawing.Point(54, 42);
+            this.GroupBoxConnect.Location = new System.Drawing.Point(25, 42);
             this.GroupBoxConnect.Name = "GroupBoxConnect";
-            this.GroupBoxConnect.Size = new System.Drawing.Size(512, 302);
+            this.GroupBoxConnect.Size = new System.Drawing.Size(567, 302);
             this.GroupBoxConnect.TabIndex = 6;
             this.GroupBoxConnect.TabStop = false;
             this.GroupBoxConnect.Text = "Connection à votre compte OrdiCare";
+            // 
+            // buttonShHiPassword
+            // 
+            this.buttonShHiPassword.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonShHiPassword.Location = new System.Drawing.Point(436, 125);
+            this.buttonShHiPassword.Name = "buttonShHiPassword";
+            this.buttonShHiPassword.Size = new System.Drawing.Size(114, 39);
+            this.buttonShHiPassword.TabIndex = 6;
+            this.buttonShHiPassword.Text = "Afficher";
+            this.buttonShHiPassword.UseVisualStyleBackColor = true;
+            this.buttonShHiPassword.Click += new System.EventHandler(this.buttonShHiPassword_Click);
             // 
             // FormLogin
             // 
@@ -143,5 +156,6 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox GroupBoxConnect;
+        private System.Windows.Forms.Button buttonShHiPassword;
     }
 }
