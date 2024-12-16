@@ -18,9 +18,9 @@ namespace WindowsFormsAppOrdiCare
         public FormClient()
         {
             InitializeComponent();
-            loadClient();
+            LoadClient();
         }
-        private void loadClient()
+        private void LoadClient()
         {
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
@@ -109,7 +109,7 @@ namespace WindowsFormsAppOrdiCare
                 sqlCommand.ExecuteNonQuery();
             }
             MessageBox.Show("Le Client a été ajouté avec succès !", "Résultat");
-            loadClient();
+            LoadClient();
             ClearFields();
         }
 
@@ -158,7 +158,7 @@ namespace WindowsFormsAppOrdiCare
                 sqlCommand.ExecuteNonQuery();
             }
             MessageBox.Show("Le Client a été modifié avec succès !", "Résultat");
-            loadClient();
+            LoadClient();
             ClearFields();
         }
 
@@ -189,7 +189,7 @@ namespace WindowsFormsAppOrdiCare
                 }
             }
             MessageBox.Show("Le Client a été supprimé avec succès !", "Résultat");
-            loadClient();
+            LoadClient();
             ClearFields();
         }
     }

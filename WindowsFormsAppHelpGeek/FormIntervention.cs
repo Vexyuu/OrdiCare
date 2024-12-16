@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +14,20 @@ namespace WindowsFormsAppOrdiCare
 {
     public partial class FormIntervention : Form
     {
-        private string strConnexion = "Server=.\\SQLEXPRESS;" +
+        private string StrConnexion = "Server=.\\SQLEXPRESS;" +
             "Database=OrdiCare;Trusted_Connection=True";
         public FormIntervention()
         {
             InitializeComponent();
-            loadIntervention();
+            LoadIntervention();
         }
 
         // ----------------------------------------------------------------------------
         // Fonctions pour Charger les Clients
         // ----------------------------------------------------------------------------
-        private void loadIntervention()
+        private void LoadIntervention()
         {
-            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
+            using (SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion))
             {
                 connectionBaseSQL.Open();
                 string sqlQuery = "select ID_INTER, Objet_Intervention from INTERVENTION Objet_Intervention";
@@ -45,7 +46,7 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
-        private void clearFields()
+        private void ClearFields()
         {
             textBoxObjectIntervention.Text = textBoxDateIntervention.Text = textBoxHeureIntervention.Text =
             textBoxCommentaireIntervention.Text = textBoxMaterielIntervention.Text =
@@ -58,7 +59,7 @@ namespace WindowsFormsAppOrdiCare
             int idReferenceClient = it.getId();
 
             // string leNom = listBoxClient.SelectedItem.ToString();
-            SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
+            SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion);
             connectionBaseSQL.Open();
             string sqlQuery = "select * from INTERVENTION where ID_INTER = @id";
             using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
@@ -81,6 +82,107 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
+        // ----------------------------------------------------------------------------
+        // Fonctions pour Modifier les Interventions
+        // ----------------------------------------------------------------------------
+        private void buttonModifier_Click(object sender, EventArgs e)
+        {
+            int selectIntervention = listBoxIntervention.SelectedIndex;
+
+            // Vérification qu'une intervention est sélectionnée
+            if (selectIntervention == -1)
+            {
+                MessageBox.Show("Choisissez une Intervention.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                listBoxIntervention.Focus();
+                return;
+            }
+
+            // Vérification de l'objet de l'intervention
+            if (string.IsNullOrWhiteSpace(textBoxObjectIntervention.Text))
+            {
+                MessageBox.Show("Veuillez indiquer l'Objet de l'Intervention.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                textBoxObjectIntervention.Focus();
+                return;
+            }
+
+            // Récupération de l'ID de l'intervention sélectionnée
+            ClassItem it = (ClassItem)listBoxIntervention.SelectedItem;
+            int idReferenceIntervention = it.getId();
+
+            try
+            {
+                // Conversion des valeurs avec validation
+                if (!int.TryParse(textBoxMarqueIntervention.Text.Trim(), out int idMarque))
+                {
+                    MessageBox.Show("ID Marque doit être un entier valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(textBoxMaterielIntervention.Text.Trim(), out int idProd))
+                {
+                    MessageBox.Show("ID Produit doit être un entier valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(textBoxClientIntervention.Text.Trim(), out int idClient))
+                {
+                    MessageBox.Show("ID Client doit être un entier valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(textBoxPrixIntervention.Text.Trim(), out decimal prix))
+                {
+                    MessageBox.Show("Le prix doit être un nombre valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Connexion à la base et exécution de la requête SQL
+                using (SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion))
+                {
+                    connectionBaseSQL.Open();
+                    string sqlQueryUpdate = "UPDATE INTERVENTION SET Objet_Intervention = @lObject, Date_Intervention = @laDateIntervention, " +
+                                            "Heure_Intervention = @lHeureIntervention, Commentaire = @leCommentaire, ID_MARQUE = @lidMarque, " +
+                                            "ID_PROD = @lidProduit, ID_CLIENT = @lidClient, Prix = @lePrix WHERE ID_INTER = @idIntervention";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(sqlQueryUpdate, connectionBaseSQL))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@idIntervention", idReferenceIntervention);
+                        sqlCommand.Parameters.AddWithValue("@lObject", textBoxObjectIntervention.Text.Trim());
+                        sqlCommand.Parameters.AddWithValue("@laDateIntervention", DateTime.Parse(textBoxDateIntervention.Text.Trim()));
+                        sqlCommand.Parameters.AddWithValue("@lHeureIntervention", TimeSpan.Parse(textBoxHeureIntervention.Text.Trim()));
+                        sqlCommand.Parameters.AddWithValue("@leCommentaire", textBoxCommentaireIntervention.Text.Trim());
+                        sqlCommand.Parameters.AddWithValue("@lidMarque", idMarque);
+                        sqlCommand.Parameters.AddWithValue("@lidProduit", idProd);
+                        sqlCommand.Parameters.AddWithValue("@lidClient", idClient);
+                        sqlCommand.Parameters.AddWithValue("@lePrix", prix);
+
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("L'intervention a été modifiée avec succès !", "Résultat", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadIntervention();
+                ClearFields();
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Erreur de format : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Une erreur SQL est survenue : {ex.Message}", "Erreur SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur inattendue est survenue : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        // ----------------------------------------------------------------------------
+        // Fonctions pour Supprimer les Interventions
+        // ----------------------------------------------------------------------------
         private void buttonSupprimer_Click(object sender, EventArgs e)
         {
             if (textBoxObjectIntervention.Text == "")
@@ -94,7 +196,7 @@ namespace WindowsFormsAppOrdiCare
             ClassItem it = (ClassItem)listBoxIntervention.SelectedItem;
             int idReference = it.getId();
 
-            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
+            using (SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion))
             {
                 connectionBaseSQL.Open();
                 string sqlQuerydeleteIntervention = "delete from INTERVENTION where ID_INTER = @idIntervention";
@@ -106,8 +208,10 @@ namespace WindowsFormsAppOrdiCare
                 }
             }
             MessageBox.Show("L'intervention a été supprimé avec succès !", "Résultat");
-            loadIntervention();
-            clearFields();
+            LoadIntervention();
+            ClearFields();
         }
+
+
     }
 }

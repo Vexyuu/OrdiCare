@@ -227,7 +227,7 @@ namespace WindowsFormsAppOrdiCare
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
 
-            string sqlQueryUpdateMateriel = "update PRODUIT set Date_Installation = @ladate where ID_PROD = @idProduit";
+            string sqlQueryUpdateMateriel = "update PRODUIT set Date_Installation = @ladate where ID_PRODUIT = @idProduit";
             using (SqlCommand sqlCommand = new SqlCommand(sqlQueryUpdateMateriel, connectionBaseSQL))
             {
                 sqlCommand.Parameters.AddWithValue("ladate", dateInstall);
@@ -242,7 +242,7 @@ namespace WindowsFormsAppOrdiCare
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
             {
                 connectionBaseSQL.Open();
-                string sqlQuery = "select ID_PROD from PRODUIT where Nom = @nom";
+                string sqlQuery = "select ID_PRODUIT from PRODUIT where Nom = @nom";
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
                 {
                     sqlCommand.Parameters.AddWithValue("@nom", produit);
@@ -250,7 +250,7 @@ namespace WindowsFormsAppOrdiCare
                     {
                         if (drp.Read())
                         {
-                            return Convert.ToInt32(drp["ID_PROD"]);
+                            return Convert.ToInt32(drp["ID_PRODUIT"]);
                         }
                         else
                         {
@@ -352,6 +352,12 @@ namespace WindowsFormsAppOrdiCare
         }
 
         private void produitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormProduit formProduit = new FormProduit();
+            formProduit.ShowDialog();
+        }
+
+        private void toolStripButtonProduit_Click(object sender, EventArgs e)
         {
             FormProduit formProduit = new FormProduit();
             formProduit.ShowDialog();
