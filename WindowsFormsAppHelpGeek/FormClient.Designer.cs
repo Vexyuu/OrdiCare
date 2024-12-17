@@ -61,11 +61,11 @@
             this.groupBoxProduitText.Controls.Add(this.labelNomProduit);
             this.groupBoxProduitText.Controls.Add(this.textBoxNomProduit);
             this.groupBoxProduitText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
-            this.groupBoxProduitText.Location = new System.Drawing.Point(190, 30);
-            this.groupBoxProduitText.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxProduitText.Location = new System.Drawing.Point(253, 37);
+            this.groupBoxProduitText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxProduitText.Name = "groupBoxProduitText";
-            this.groupBoxProduitText.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxProduitText.Size = new System.Drawing.Size(339, 198);
+            this.groupBoxProduitText.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxProduitText.Size = new System.Drawing.Size(452, 244);
             this.groupBoxProduitText.TabIndex = 15;
             this.groupBoxProduitText.TabStop = false;
             this.groupBoxProduitText.Text = "Plus d\'informations";
@@ -74,11 +74,11 @@
             // 
             this.textBoxAdresseClient.Font = new System.Drawing.Font("Arial", 11F);
             this.textBoxAdresseClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxAdresseClient.Location = new System.Drawing.Point(107, 142);
-            this.textBoxAdresseClient.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxAdresseClient.Location = new System.Drawing.Point(143, 175);
+            this.textBoxAdresseClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxAdresseClient.Multiline = true;
             this.textBoxAdresseClient.Name = "textBoxAdresseClient";
-            this.textBoxAdresseClient.Size = new System.Drawing.Size(228, 41);
+            this.textBoxAdresseClient.Size = new System.Drawing.Size(303, 50);
             this.textBoxAdresseClient.TabIndex = 29;
             // 
             // labelAdresseClient
@@ -86,10 +86,9 @@
             this.labelAdresseClient.AutoSize = true;
             this.labelAdresseClient.Font = new System.Drawing.Font("Arial", 12F);
             this.labelAdresseClient.ForeColor = System.Drawing.Color.Black;
-            this.labelAdresseClient.Location = new System.Drawing.Point(4, 143);
-            this.labelAdresseClient.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAdresseClient.Location = new System.Drawing.Point(5, 176);
             this.labelAdresseClient.Name = "labelAdresseClient";
-            this.labelAdresseClient.Size = new System.Drawing.Size(75, 18);
+            this.labelAdresseClient.Size = new System.Drawing.Size(95, 23);
             this.labelAdresseClient.TabIndex = 28;
             this.labelAdresseClient.Text = "Adresse :";
             // 
@@ -98,10 +97,9 @@
             this.labelTelClient.AutoSize = true;
             this.labelTelClient.Font = new System.Drawing.Font("Arial", 12F);
             this.labelTelClient.ForeColor = System.Drawing.Color.Black;
-            this.labelTelClient.Location = new System.Drawing.Point(4, 107);
-            this.labelTelClient.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTelClient.Location = new System.Drawing.Point(5, 132);
             this.labelTelClient.Name = "labelTelClient";
-            this.labelTelClient.Size = new System.Drawing.Size(35, 18);
+            this.labelTelClient.Size = new System.Drawing.Size(47, 23);
             this.labelTelClient.TabIndex = 27;
             this.labelTelClient.Text = "Tel :";
             // 
@@ -109,20 +107,20 @@
             // 
             this.textBoxTelClient.Font = new System.Drawing.Font("Arial", 11F);
             this.textBoxTelClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxTelClient.Location = new System.Drawing.Point(107, 106);
-            this.textBoxTelClient.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTelClient.Location = new System.Drawing.Point(143, 130);
+            this.textBoxTelClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxTelClient.Name = "textBoxTelClient";
-            this.textBoxTelClient.Size = new System.Drawing.Size(228, 24);
+            this.textBoxTelClient.Size = new System.Drawing.Size(303, 29);
             this.textBoxTelClient.TabIndex = 26;
             // 
             // textBoxMailClient
             // 
             this.textBoxMailClient.Font = new System.Drawing.Font("Arial", 11F);
             this.textBoxMailClient.ForeColor = System.Drawing.Color.Black;
-            this.textBoxMailClient.Location = new System.Drawing.Point(107, 66);
-            this.textBoxMailClient.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxMailClient.Location = new System.Drawing.Point(143, 81);
+            this.textBoxMailClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxMailClient.Name = "textBoxMailClient";
-            this.textBoxMailClient.Size = new System.Drawing.Size(228, 24);
+            this.textBoxMailClient.Size = new System.Drawing.Size(303, 29);
             this.textBoxMailClient.TabIndex = 25;
             // 
             // labelMailClient
@@ -130,10 +128,9 @@
             this.labelMailClient.AutoSize = true;
             this.labelMailClient.Font = new System.Drawing.Font("Arial", 12F);
             this.labelMailClient.ForeColor = System.Drawing.Color.Black;
-            this.labelMailClient.Location = new System.Drawing.Point(4, 67);
-            this.labelMailClient.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelMailClient.Location = new System.Drawing.Point(5, 82);
             this.labelMailClient.Name = "labelMailClient";
-            this.labelMailClient.Size = new System.Drawing.Size(45, 18);
+            this.labelMailClient.Size = new System.Drawing.Size(58, 23);
             this.labelMailClient.TabIndex = 24;
             this.labelMailClient.Text = "Mail :";
             // 
@@ -142,10 +139,9 @@
             this.labelNomProduit.AutoSize = true;
             this.labelNomProduit.Font = new System.Drawing.Font("Arial", 12F);
             this.labelNomProduit.ForeColor = System.Drawing.Color.Black;
-            this.labelNomProduit.Location = new System.Drawing.Point(4, 29);
-            this.labelNomProduit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNomProduit.Location = new System.Drawing.Point(5, 36);
             this.labelNomProduit.Name = "labelNomProduit";
-            this.labelNomProduit.Size = new System.Drawing.Size(49, 18);
+            this.labelNomProduit.Size = new System.Drawing.Size(62, 23);
             this.labelNomProduit.TabIndex = 23;
             this.labelNomProduit.Text = "Nom :";
             // 
@@ -153,10 +149,10 @@
             // 
             this.textBoxNomProduit.Font = new System.Drawing.Font("Arial", 11F);
             this.textBoxNomProduit.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNomProduit.Location = new System.Drawing.Point(107, 28);
-            this.textBoxNomProduit.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxNomProduit.Location = new System.Drawing.Point(143, 34);
+            this.textBoxNomProduit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNomProduit.Name = "textBoxNomProduit";
-            this.textBoxNomProduit.Size = new System.Drawing.Size(228, 24);
+            this.textBoxNomProduit.Size = new System.Drawing.Size(303, 29);
             this.textBoxNomProduit.TabIndex = 22;
             // 
             // groupBoxProduit
@@ -164,11 +160,11 @@
             this.groupBoxProduit.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.groupBoxProduit.Controls.Add(this.listBoxProduit);
             this.groupBoxProduit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
-            this.groupBoxProduit.Location = new System.Drawing.Point(11, 17);
-            this.groupBoxProduit.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxProduit.Location = new System.Drawing.Point(15, 21);
+            this.groupBoxProduit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxProduit.Name = "groupBoxProduit";
-            this.groupBoxProduit.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxProduit.Size = new System.Drawing.Size(162, 260);
+            this.groupBoxProduit.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxProduit.Size = new System.Drawing.Size(232, 320);
             this.groupBoxProduit.TabIndex = 14;
             this.groupBoxProduit.TabStop = false;
             this.groupBoxProduit.Text = "Liste des clients";
@@ -177,11 +173,11 @@
             // 
             this.listBoxProduit.Font = new System.Drawing.Font("Arial", 11F);
             this.listBoxProduit.FormattingEnabled = true;
-            this.listBoxProduit.ItemHeight = 17;
-            this.listBoxProduit.Location = new System.Drawing.Point(4, 28);
-            this.listBoxProduit.Margin = new System.Windows.Forms.Padding(2);
+            this.listBoxProduit.ItemHeight = 21;
+            this.listBoxProduit.Location = new System.Drawing.Point(5, 34);
+            this.listBoxProduit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxProduit.Name = "listBoxProduit";
-            this.listBoxProduit.Size = new System.Drawing.Size(153, 225);
+            this.listBoxProduit.Size = new System.Drawing.Size(203, 256);
             this.listBoxProduit.TabIndex = 8;
             this.listBoxProduit.SelectedIndexChanged += new System.EventHandler(this.listBoxClient_SelectedIndexChanged);
             // 
@@ -189,10 +185,10 @@
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Font = new System.Drawing.Font("Arial", 11F);
-            this.buttonCancel.Location = new System.Drawing.Point(442, 284);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCancel.Location = new System.Drawing.Point(589, 350);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(97, 32);
+            this.buttonCancel.Size = new System.Drawing.Size(129, 39);
             this.buttonCancel.TabIndex = 13;
             this.buttonCancel.Text = "Annuler";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -201,10 +197,10 @@
             // 
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Font = new System.Drawing.Font("Arial", 11F);
-            this.buttonOK.Location = new System.Drawing.Point(330, 284);
-            this.buttonOK.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonOK.Location = new System.Drawing.Point(440, 350);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(97, 32);
+            this.buttonOK.Size = new System.Drawing.Size(129, 39);
             this.buttonOK.TabIndex = 12;
             this.buttonOK.Text = "Valider";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -212,10 +208,10 @@
             // buttonAjouter
             // 
             this.buttonAjouter.Font = new System.Drawing.Font("Arial", 10F);
-            this.buttonAjouter.Location = new System.Drawing.Point(190, 245);
-            this.buttonAjouter.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAjouter.Location = new System.Drawing.Point(253, 302);
+            this.buttonAjouter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(91, 25);
+            this.buttonAjouter.Size = new System.Drawing.Size(121, 31);
             this.buttonAjouter.TabIndex = 16;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = true;
@@ -224,10 +220,10 @@
             // buttonModifier
             // 
             this.buttonModifier.Font = new System.Drawing.Font("Arial", 10F);
-            this.buttonModifier.Location = new System.Drawing.Point(313, 245);
-            this.buttonModifier.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonModifier.Location = new System.Drawing.Point(417, 302);
+            this.buttonModifier.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonModifier.Name = "buttonModifier";
-            this.buttonModifier.Size = new System.Drawing.Size(91, 25);
+            this.buttonModifier.Size = new System.Drawing.Size(121, 31);
             this.buttonModifier.TabIndex = 17;
             this.buttonModifier.Text = "Modifier";
             this.buttonModifier.UseVisualStyleBackColor = true;
@@ -236,10 +232,10 @@
             // buttonSupprimer
             // 
             this.buttonSupprimer.Font = new System.Drawing.Font("Arial", 10F);
-            this.buttonSupprimer.Location = new System.Drawing.Point(434, 245);
-            this.buttonSupprimer.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSupprimer.Location = new System.Drawing.Point(579, 302);
+            this.buttonSupprimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSupprimer.Name = "buttonSupprimer";
-            this.buttonSupprimer.Size = new System.Drawing.Size(91, 25);
+            this.buttonSupprimer.Size = new System.Drawing.Size(121, 31);
             this.buttonSupprimer.TabIndex = 18;
             this.buttonSupprimer.Text = "Supprimer";
             this.buttonSupprimer.UseVisualStyleBackColor = true;
@@ -248,10 +244,10 @@
             // buttonCleanClient
             // 
             this.buttonCleanClient.Font = new System.Drawing.Font("Arial", 10F);
-            this.buttonCleanClient.Location = new System.Drawing.Point(29, 288);
-            this.buttonCleanClient.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCleanClient.Location = new System.Drawing.Point(39, 354);
+            this.buttonCleanClient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCleanClient.Name = "buttonCleanClient";
-            this.buttonCleanClient.Size = new System.Drawing.Size(122, 25);
+            this.buttonCleanClient.Size = new System.Drawing.Size(163, 31);
             this.buttonCleanClient.TabIndex = 19;
             this.buttonCleanClient.Text = "Vider les cellules";
             this.buttonCleanClient.UseVisualStyleBackColor = true;
@@ -259,10 +255,10 @@
             // 
             // FormClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(548, 326);
+            this.ClientSize = new System.Drawing.Size(731, 401);
             this.Controls.Add(this.buttonCleanClient);
             this.Controls.Add(this.buttonSupprimer);
             this.Controls.Add(this.buttonModifier);
@@ -271,7 +267,7 @@
             this.Controls.Add(this.groupBoxProduit);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormClient";

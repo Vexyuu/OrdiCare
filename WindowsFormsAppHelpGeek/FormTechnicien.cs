@@ -145,7 +145,7 @@ namespace WindowsFormsAppOrdiCare
 
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
-            string sqlQueryUpdateTechnicien = "update TECHNICIEN set Nom = @leTechnicien, Mail = @leMail, Tel = @leTelephone, Statut = @leStatut where ID_TECHNICIEN = @idTechnicien";
+            string sqlQueryUpdateTechnicien = "update TECHNICIEN set Nom = @leTechnicien, Mail = @leMail, Telephone = @leTelephone, Statut = @leStatut where ID_TECHNICIEN = @idTechnicien";
             using (SqlCommand sqlCommand = new SqlCommand(sqlQueryUpdateTechnicien, connectionBaseSQL))
             {
                 sqlCommand.Parameters.AddWithValue("idTechnicien", idReferenceTechnicien);
