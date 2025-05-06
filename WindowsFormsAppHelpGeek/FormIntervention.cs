@@ -30,14 +30,14 @@ namespace WindowsFormsAppOrdiCare
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion))
             {
                 connectionBaseSQL.Open();
-                string sqlQuery = "select ID_INTER, Objet_Intervention from INTERVENTION Objet_Intervention";
+                string sqlQuery = "select ID_INTERVENTION, Objet_Intervention from INTERVENTION Objet_Intervention";
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
                 using (SqlDataReader drp = sqlCommand.ExecuteReader())
                 {
                     listBoxIntervention.Items.Clear();
                     while (drp.Read())
                     {
-                        int id = Convert.ToInt32(drp["ID_INTER"]);
+                        int id = Convert.ToInt32(drp["ID_INTERVENTION"]);
                         string nom = drp["Objet_Intervention"].ToString();
                         var it = new ClassItem(id, nom);
                         listBoxIntervention.Items.Add(it);
@@ -50,7 +50,7 @@ namespace WindowsFormsAppOrdiCare
         {
             textBoxObjectIntervention.Text = textBoxDateIntervention.Text = textBoxHeureIntervention.Text =
             textBoxCommentaireIntervention.Text = textBoxMaterielIntervention.Text =
-            textBoxClientIntervention.Text = textBoxMarqueIntervention.Text = textBoxPrixIntervention.Text = string.Empty;
+            textBoxClientIntervention.Text = textBoxMarqueIntervention.Text = textBoxPrixIntervention.Text = textBoxTechnicienIntervention.Text = string.Empty;
         }
 
         private void listBoxIntervention_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace WindowsFormsAppOrdiCare
             // string leNom = listBoxClient.SelectedItem.ToString();
             SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion);
             connectionBaseSQL.Open();
-            string sqlQuery = "select * from INTERVENTION where ID_INTER = @id";
+            string sqlQuery = "select * from INTERVENTION where ID_INTERVENTION = @id";
             using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
             {
                 sqlCommand.Parameters.AddWithValue("@id", idReferenceClient);
@@ -73,10 +73,11 @@ namespace WindowsFormsAppOrdiCare
                         textBoxDateIntervention.Text = drp["Date_Intervention"].ToString();
                         textBoxHeureIntervention.Text = drp["Heure_Intervention"].ToString();
                         textBoxCommentaireIntervention.Text = drp["Commentaire"].ToString();
-                        textBoxMaterielIntervention.Text = drp["ID_MARQUE"].ToString();
-                        textBoxClientIntervention.Text = drp["Prix"].ToString();
-                        textBoxMarqueIntervention.Text = drp["ID_CLIENT"].ToString();
-                        textBoxPrixIntervention.Text = drp["ID_PROD"].ToString();
+                        textBoxMarqueIntervention.Text = drp["ID_MARQUE"].ToString();
+                        textBoxPrixIntervention.Text = drp["Prix"].ToString();
+                        textBoxClientIntervention.Text = drp["ID_CLIENT"].ToString();
+                        textBoxMaterielIntervention.Text = drp["ID_PRODUIT"].ToString();
+                        textBoxTechnicienIntervention.Text = drp["ID_TECHNICIEN"].ToString();
                     }
                 }
             }
@@ -129,6 +130,11 @@ namespace WindowsFormsAppOrdiCare
                     MessageBox.Show("ID Client doit être un entier valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                if (!int.TryParse(textBoxTechnicienIntervention.Text.Trim(), out int idTechnicien))
+                {
+                    MessageBox.Show("ID Technicien doit être un entier valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 if (!decimal.TryParse(textBoxPrixIntervention.Text.Trim(), out decimal prix))
                 {
@@ -142,7 +148,7 @@ namespace WindowsFormsAppOrdiCare
                     connectionBaseSQL.Open();
                     string sqlQueryUpdate = "UPDATE INTERVENTION SET Objet_Intervention = @lObject, Date_Intervention = @laDateIntervention, " +
                                             "Heure_Intervention = @lHeureIntervention, Commentaire = @leCommentaire, ID_MARQUE = @lidMarque, " +
-                                            "ID_PROD = @lidProduit, ID_CLIENT = @lidClient, Prix = @lePrix WHERE ID_INTER = @idIntervention";
+                                            "ID_PRODUIT = @lidProduit, ID_CLIENT = @lidClient, ID_TECHNICIEN = @lidTechnicien, Prix = @lePrix WHERE ID_INTERVENTION = @idIntervention";
 
                     using (SqlCommand sqlCommand = new SqlCommand(sqlQueryUpdate, connectionBaseSQL))
                     {
@@ -153,6 +159,7 @@ namespace WindowsFormsAppOrdiCare
                         sqlCommand.Parameters.AddWithValue("@leCommentaire", textBoxCommentaireIntervention.Text.Trim());
                         sqlCommand.Parameters.AddWithValue("@lidMarque", idMarque);
                         sqlCommand.Parameters.AddWithValue("@lidProduit", idProd);
+                        sqlCommand.Parameters.AddWithValue("@lidTechnicien", idTechnicien);
                         sqlCommand.Parameters.AddWithValue("@lidClient", idClient);
                         sqlCommand.Parameters.AddWithValue("@lePrix", prix);
 
@@ -199,7 +206,7 @@ namespace WindowsFormsAppOrdiCare
             using (SqlConnection connectionBaseSQL = new SqlConnection(this.StrConnexion))
             {
                 connectionBaseSQL.Open();
-                string sqlQuerydeleteIntervention = "delete from INTERVENTION where ID_INTER = @idIntervention";
+                string sqlQuerydeleteIntervention = "delete from INTERVENTION where ID_INTERVENTION = @idIntervention";
                 using (SqlCommand sqlCommand = new SqlCommand(sqlQuerydeleteIntervention, connectionBaseSQL))
                 {
                     sqlCommand.Parameters.AddWithValue("@idIntervention", idReference);
@@ -212,6 +219,9 @@ namespace WindowsFormsAppOrdiCare
             ClearFields();
         }
 
-
+        private void buttonCleanClient_Click(object sender, EventArgs e)
+        {
+            this.ClearFields();
+        }
     }
 }

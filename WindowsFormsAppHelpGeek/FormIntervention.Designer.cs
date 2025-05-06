@@ -32,6 +32,7 @@
             this.buttonSupprimer = new System.Windows.Forms.Button();
             this.buttonModifier = new System.Windows.Forms.Button();
             this.groupBoxMarqueText = new System.Windows.Forms.GroupBox();
+            this.textBoxTechnicienIntervention = new System.Windows.Forms.TextBox();
             this.textBoxMarqueIntervention = new System.Windows.Forms.TextBox();
             this.textBoxPrixIntervention = new System.Windows.Forms.TextBox();
             this.textBoxClientIntervention = new System.Windows.Forms.TextBox();
@@ -51,13 +52,14 @@
             // buttonCleanClient
             // 
             this.buttonCleanClient.Font = new System.Drawing.Font("Arial", 10F);
-            this.buttonCleanClient.Location = new System.Drawing.Point(27, 281);
+            this.buttonCleanClient.Location = new System.Drawing.Point(13, 310);
             this.buttonCleanClient.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCleanClient.Name = "buttonCleanClient";
             this.buttonCleanClient.Size = new System.Drawing.Size(122, 25);
             this.buttonCleanClient.TabIndex = 27;
             this.buttonCleanClient.Text = "Vider les cellules";
             this.buttonCleanClient.UseVisualStyleBackColor = true;
+            this.buttonCleanClient.Click += new System.EventHandler(this.buttonCleanClient_Click);
             // 
             // buttonSupprimer
             // 
@@ -85,6 +87,7 @@
             // 
             // groupBoxMarqueText
             // 
+            this.groupBoxMarqueText.Controls.Add(this.textBoxTechnicienIntervention);
             this.groupBoxMarqueText.Controls.Add(this.textBoxMarqueIntervention);
             this.groupBoxMarqueText.Controls.Add(this.textBoxPrixIntervention);
             this.groupBoxMarqueText.Controls.Add(this.textBoxClientIntervention);
@@ -98,10 +101,20 @@
             this.groupBoxMarqueText.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxMarqueText.Name = "groupBoxMarqueText";
             this.groupBoxMarqueText.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxMarqueText.Size = new System.Drawing.Size(451, 277);
+            this.groupBoxMarqueText.Size = new System.Drawing.Size(451, 296);
             this.groupBoxMarqueText.TabIndex = 23;
             this.groupBoxMarqueText.TabStop = false;
             this.groupBoxMarqueText.Text = "Plus d\'informations";
+            // 
+            // textBoxTechnicienIntervention
+            // 
+            this.textBoxTechnicienIntervention.Font = new System.Drawing.Font("Arial", 11F);
+            this.textBoxTechnicienIntervention.ForeColor = System.Drawing.Color.Black;
+            this.textBoxTechnicienIntervention.Location = new System.Drawing.Point(4, 256);
+            this.textBoxTechnicienIntervention.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTechnicienIntervention.Name = "textBoxTechnicienIntervention";
+            this.textBoxTechnicienIntervention.Size = new System.Drawing.Size(443, 24);
+            this.textBoxTechnicienIntervention.TabIndex = 34;
             // 
             // textBoxMarqueIntervention
             // 
@@ -191,7 +204,7 @@
             this.groupBoxIntervention.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxIntervention.Name = "groupBoxIntervention";
             this.groupBoxIntervention.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxIntervention.Size = new System.Drawing.Size(221, 260);
+            this.groupBoxIntervention.Size = new System.Drawing.Size(221, 296);
             this.groupBoxIntervention.TabIndex = 22;
             this.groupBoxIntervention.TabStop = false;
             this.groupBoxIntervention.Text = "Liste des interventions";
@@ -204,7 +217,7 @@
             this.listBoxIntervention.Location = new System.Drawing.Point(4, 28);
             this.listBoxIntervention.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxIntervention.Name = "listBoxIntervention";
-            this.listBoxIntervention.Size = new System.Drawing.Size(213, 225);
+            this.listBoxIntervention.Size = new System.Drawing.Size(213, 259);
             this.listBoxIntervention.TabIndex = 8;
             this.listBoxIntervention.SelectedIndexChanged += new System.EventHandler(this.listBoxIntervention_SelectedIndexChanged);
             // 
@@ -276,5 +289,6 @@
         private System.Windows.Forms.TextBox textBoxMaterielIntervention;
         private System.Windows.Forms.TextBox textBoxPrixIntervention;
         private System.Windows.Forms.TextBox textBoxMarqueIntervention;
+        private System.Windows.Forms.TextBox textBoxTechnicienIntervention;
     }
 }

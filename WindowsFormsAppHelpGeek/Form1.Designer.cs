@@ -40,6 +40,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.fermerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBoxInterventions = new System.Windows.Forms.GroupBox();
+            this.comboBoxTechnicien = new System.Windows.Forms.ComboBox();
             this.labelTechnicien = new System.Windows.Forms.Label();
             this.comboBoxMarque = new System.Windows.Forms.ComboBox();
             this.labelMarque = new System.Windows.Forms.Label();
@@ -66,6 +67,8 @@
             this.toolStripButtonTechnicien = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonInterventions = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonClearField = new System.Windows.Forms.ToolStripButton();
+            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.créerUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.GroupBoxInterventions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -75,7 +78,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem});
+            this.ToolStripMenuItem,
+            this.administrationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -160,6 +164,7 @@
             // GroupBoxInterventions
             // 
             this.GroupBoxInterventions.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.GroupBoxInterventions.Controls.Add(this.comboBoxTechnicien);
             this.GroupBoxInterventions.Controls.Add(this.labelTechnicien);
             this.GroupBoxInterventions.Controls.Add(this.comboBoxMarque);
             this.GroupBoxInterventions.Controls.Add(this.labelMarque);
@@ -188,6 +193,16 @@
             this.GroupBoxInterventions.TabIndex = 4;
             this.GroupBoxInterventions.TabStop = false;
             this.GroupBoxInterventions.Text = "Interventions";
+            // 
+            // comboBoxTechnicien
+            // 
+            this.comboBoxTechnicien.Font = new System.Drawing.Font("Arial", 11F);
+            this.comboBoxTechnicien.FormattingEnabled = true;
+            this.comboBoxTechnicien.Location = new System.Drawing.Point(788, 372);
+            this.comboBoxTechnicien.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxTechnicien.Name = "comboBoxTechnicien";
+            this.comboBoxTechnicien.Size = new System.Drawing.Size(162, 25);
+            this.comboBoxTechnicien.TabIndex = 29;
             // 
             // labelTechnicien
             // 
@@ -484,6 +499,21 @@
             this.toolStripButtonClearField.Text = "Vider les champs";
             this.toolStripButtonClearField.Click += new System.EventHandler(this.toolStripButtonClearField_Click);
             // 
+            // administrationToolStripMenuItem
+            // 
+            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.créerUtilisateurToolStripMenuItem});
+            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.administrationToolStripMenuItem.Text = "Administration";
+            // 
+            // créerUtilisateurToolStripMenuItem
+            // 
+            this.créerUtilisateurToolStripMenuItem.Name = "créerUtilisateurToolStripMenuItem";
+            this.créerUtilisateurToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.créerUtilisateurToolStripMenuItem.Text = "Créer Utilisateur";
+            this.créerUtilisateurToolStripMenuItem.Click += new System.EventHandler(this.créerUtilisateurToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -552,6 +582,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonClearField;
         private System.Windows.Forms.ToolStripMenuItem produitToolStripMenuItem;
         private System.Windows.Forms.Label labelTechnicien;
+        private System.Windows.Forms.ComboBox comboBoxTechnicien;
+        private System.Windows.Forms.ToolStripMenuItem administrationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem créerUtilisateurToolStripMenuItem;
     }
 }
 

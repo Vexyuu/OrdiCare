@@ -26,6 +26,7 @@ namespace WindowsFormsAppOrdiCare
             LoadMateriel();
             LoadClient();
             LoadMarque();
+            LoadTechnicien();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -65,26 +66,43 @@ namespace WindowsFormsAppOrdiCare
         // ----------------------------------------------------------------------------
         private bool checkConnexion(string lelogin, string lepwd)
         {
-            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
+            using (SqlConnection connection = new SqlConnection(this.strConnexion))
             {
-                connectionBaseSQL.Open();
-                string sqlQuery = "select count(*) as nb from Login where Nom = @lenom and Password = @lepwd";
-                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
-                {
-                    sqlCommand.Parameters.AddWithValue("@lenom", lelogin);
-                    sqlCommand.Parameters.AddWithValue("@lepwd", lepwd);
+                connection.Open();
 
-                    using (SqlDataReader dr = sqlCommand.ExecuteReader())
+                // On récupère le mot de passe et le salt (si présent)
+                string sqlQuery = "SELECT password, salt FROM LOGIN WHERE nom = @lenom";
+                using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@lenom", lelogin);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (dr.Read() && Convert.ToInt32(dr["nb"]) > 0)
+                        if (reader.Read())
                         {
-                            return true;
+                            string storedPassword = reader["password"].ToString();
+                            string salt = reader["salt"] == DBNull.Value ? null : reader["salt"].ToString();
+
+                            // Si salt présent : on vérifie le mot de passe haché
+                            if (!string.IsNullOrEmpty(salt))
+                            {
+                                string hashedInput = PasswordHelper.HashPasswordWithSalt(lepwd, salt);
+                                return storedPassword == hashedInput;
+                            }
+                            else
+                            {
+                                // Pas de hash : comparaison en clair
+                                return storedPassword == lepwd;
+                            }
                         }
                     }
                 }
             }
             return false;
         }
+
+
+
         // ----------------------------------------------------------------------------
         // Fonctions pour charger les Matériels
         // ----------------------------------------------------------------------------
@@ -126,7 +144,7 @@ namespace WindowsFormsAppOrdiCare
             connectionBaseSQL.Close();
         }
         // ----------------------------------------------------------------------------
-        // Fonction pour valider la Création de l'intervention
+        // Fonctions pour charger les Marques
         // ----------------------------------------------------------------------------
         private void LoadMarque()
         {
@@ -146,11 +164,31 @@ namespace WindowsFormsAppOrdiCare
         }
 
         // ----------------------------------------------------------------------------
+        // Fonctions pour charger les Techniciens
+        // ----------------------------------------------------------------------------
+        private void LoadTechnicien()
+        {
+            SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
+            connectionBaseSQL.Open();
+            string sqlQuery = "select nom from TECHNICIEN order by nom";
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL);
+            SqlDataReader drp = sqlCommand.ExecuteReader();
+            comboBoxTechnicien.Items.Clear();
+            while (drp.Read() == true)
+            {
+                string pro = drp["nom"].ToString();
+                comboBoxTechnicien.Items.Add(pro);
+            }
+            drp.Close();
+            connectionBaseSQL.Close();
+        }
+
+        // ----------------------------------------------------------------------------
         // Fonction pour valider la Création de l'intervention
         // ----------------------------------------------------------------------------
         private void ClearFields()
         {
-            textBoxObjetIntervention.Text = textBoxCommentaire.Text = comboBoxMateriel.Text = textBoxPrix.Text = comboBoxClient.Text = comboBoxMarque.Text = string.Empty;
+            textBoxObjetIntervention.Text = textBoxCommentaire.Text = comboBoxMateriel.Text = textBoxPrix.Text = comboBoxClient.Text = comboBoxMarque.Text = comboBoxTechnicien.Text = string.Empty;
         }
         // ----------------------------------------------------------------------------
         // Fonction pour valider la Création de l'intervention
@@ -187,22 +225,22 @@ namespace WindowsFormsAppOrdiCare
             int idMatos = GetProduitID(comboBoxMateriel.SelectedItem.ToString());
             int idClient = GetClientID(comboBoxClient.SelectedItem.ToString());
             int idMarque = GetMarqueID(comboBoxMarque.SelectedItem.ToString());
+            int idTechnicien = GetTechnicienID(comboBoxTechnicien.SelectedItem.ToString());
 
-            AddIntervention(resultatPrix, idMatos, idClient, idMarque);  // Création d'un intervention
+            AddIntervention(resultatPrix, idMatos, idClient, idMarque, idTechnicien);  // Création d'un intervention
             MajDateInstall(idMatos, dateTimePickerDate.Value); //Mise à jour de la date d'installation
-
-            
+            ClearFields();
         }
 
         // ----------------------------------------------------------------------------
         // Fonction pour ajouter une intervention
         // ----------------------------------------------------------------------------
-        private void AddIntervention(decimal resultatPrix, int idMatos, int idClient, int idMarque)
+        private void AddIntervention(decimal resultatPrix, int idMatos, int idClient, int idMarque, int idTechnicien)
         {
             SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion);
             connectionBaseSQL.Open();
-            string sqlQueryAddIntervention = "INSERT INTO INTERVENTION (Objet_Intervention, Date_Intervention, Heure_Intervention, Commentaire, Prix, ID_PROD, ID_CLIENT, ID_MARQUE) " +
-                                             "VALUES (@lobjet, @ladate, @lheure, @lecommentaire, @leprix, @lidProd, @lidClient, @lidMarque)";
+            string sqlQueryAddIntervention = "INSERT INTO INTERVENTION (Objet_Intervention, Date_Intervention, Heure_Intervention, Commentaire, Prix, ID_PRODUIT, ID_CLIENT, ID_MARQUE, ID_TECHNICIEN) " +
+                                             "VALUES (@lobjet, @ladate, @lheure, @lecommentaire, @leprix, @lidProd, @lidClient, @lidMarque, @lidTechnicien)";
             using (SqlCommand sqlCommand = new SqlCommand(sqlQueryAddIntervention, connectionBaseSQL))
             {
                 sqlCommand.Parameters.AddWithValue("@lobjet", textBoxObjetIntervention.Text);
@@ -211,6 +249,7 @@ namespace WindowsFormsAppOrdiCare
                 sqlCommand.Parameters.AddWithValue("@lecommentaire", textBoxCommentaire.Text);
                 sqlCommand.Parameters.AddWithValue("@lidProd", idMatos);
                 sqlCommand.Parameters.AddWithValue("@lidClient", idClient);
+                sqlCommand.Parameters.AddWithValue("@lidTechnicien", idTechnicien);
                 sqlCommand.Parameters.AddWithValue("@lidMarque", idMarque);
                 sqlCommand.Parameters.AddWithValue("@leprix", resultatPrix);
 
@@ -309,6 +348,30 @@ namespace WindowsFormsAppOrdiCare
             }
         }
 
+        private int GetTechnicienID(string produit)
+        {
+            using (SqlConnection connectionBaseSQL = new SqlConnection(this.strConnexion))
+            {
+                connectionBaseSQL.Open();
+                string sqlQuery = "select ID_TECHNICIEN from TECHNICIEN where Nom = @nom";
+                using (SqlCommand sqlCommand = new SqlCommand(sqlQuery, connectionBaseSQL))
+                {
+                    sqlCommand.Parameters.AddWithValue("@nom", produit);
+                    using (SqlDataReader drp = sqlCommand.ExecuteReader())
+                    {
+                        if (drp.Read())
+                        {
+                            return Convert.ToInt32(drp["ID_TECHNICIEN"]);
+                        }
+                        else
+                        {
+                            throw new Exception("Marque introuvable");
+                        }
+                    }
+                }
+            }
+        }
+
         // ----------------------------------------------------------------------------
         // Fonctions pour les différents Menu
         // ----------------------------------------------------------------------------
@@ -361,6 +424,12 @@ namespace WindowsFormsAppOrdiCare
         {
             FormProduit formProduit = new FormProduit();
             formProduit.ShowDialog();
+        }
+
+        private void créerUtilisateurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAddUser formAddUser = new FormAddUser();
+            formAddUser.ShowDialog();
         }
     }
 }
