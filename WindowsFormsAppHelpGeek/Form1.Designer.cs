@@ -39,6 +39,8 @@
             this.listeDesInterventionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.fermerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.créerUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBoxInterventions = new System.Windows.Forms.GroupBox();
             this.comboBoxTechnicien = new System.Windows.Forms.ComboBox();
             this.labelTechnicien = new System.Windows.Forms.Label();
@@ -67,8 +69,6 @@
             this.toolStripButtonTechnicien = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonInterventions = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonClearField = new System.Windows.Forms.ToolStripButton();
-            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.créerUtilisateurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.GroupBoxInterventions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -99,6 +99,7 @@
             this.toolStripSeparator1,
             this.fermerToolStripMenuItem});
             this.ToolStripMenuItem.Font = new System.Drawing.Font("Arial", 9F);
+            this.ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.ToolStripMenuItem.Name = "ToolStripMenuItem";
             this.ToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
@@ -160,6 +161,22 @@
             this.fermerToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.fermerToolStripMenuItem.Text = "Fermer ..";
             this.fermerToolStripMenuItem.Click += new System.EventHandler(this.fermerToolStripMenuItem_Click);
+            // 
+            // administrationToolStripMenuItem
+            // 
+            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.créerUtilisateurToolStripMenuItem});
+            this.administrationToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.administrationToolStripMenuItem.Text = "Administration";
+            // 
+            // créerUtilisateurToolStripMenuItem
+            // 
+            this.créerUtilisateurToolStripMenuItem.Name = "créerUtilisateurToolStripMenuItem";
+            this.créerUtilisateurToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.créerUtilisateurToolStripMenuItem.Text = "Créer Utilisateur";
+            this.créerUtilisateurToolStripMenuItem.Click += new System.EventHandler(this.créerUtilisateurToolStripMenuItem_Click);
             // 
             // GroupBoxInterventions
             // 
@@ -498,21 +515,6 @@
             this.toolStripButtonClearField.Size = new System.Drawing.Size(47, 49);
             this.toolStripButtonClearField.Text = "Vider les champs";
             this.toolStripButtonClearField.Click += new System.EventHandler(this.toolStripButtonClearField_Click);
-            // 
-            // administrationToolStripMenuItem
-            // 
-            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.créerUtilisateurToolStripMenuItem});
-            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
-            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
-            this.administrationToolStripMenuItem.Text = "Administration";
-            // 
-            // créerUtilisateurToolStripMenuItem
-            // 
-            this.créerUtilisateurToolStripMenuItem.Name = "créerUtilisateurToolStripMenuItem";
-            this.créerUtilisateurToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.créerUtilisateurToolStripMenuItem.Text = "Créer Utilisateur";
-            this.créerUtilisateurToolStripMenuItem.Click += new System.EventHandler(this.créerUtilisateurToolStripMenuItem_Click);
             // 
             // FormMain
             // 
